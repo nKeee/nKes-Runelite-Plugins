@@ -14,7 +14,7 @@
 - Customizable dot color
 
 ## TBD
-- Learn to code
-- Make more plugins
+- Learn how to code
+- More plugins
 - Add customization for dot color, speed, etc.
 - Implement <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a> to improve humanlike dot distribution
