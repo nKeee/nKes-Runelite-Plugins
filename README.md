@@ -5,7 +5,7 @@
   </p>
 </div>
 
-## NPCHighLight
+## NPCHighlight
 - Repeatedly draws a dot inside NPCs hitbox
 - Antiban to randomize the dot positon almost every frame
 - Customizable dot color
