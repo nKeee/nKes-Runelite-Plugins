@@ -6,11 +6,13 @@
 </div>
 
 ## NPCHighLight
-- Generates a dot inside NPCs hitbox every frame
-- Fully randomised dot placement, should be a good antiban feature
+- Repeatedly draws a dot inside NPCs hitbox
+- Antiban to randomize the dot positon almost every frame
+- Customizable dot color
 
 ## ScreenMarkers
-- Generates a dot inside chosen area every frame
+- Draws a random dot within the chosen area
+- Antiban to randomize the dot positon almost every frame
 - Customizable dot color
 
 ## TBD
