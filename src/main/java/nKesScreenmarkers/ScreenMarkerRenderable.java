@@ -41,6 +41,7 @@ class ScreenMarkerRenderable implements RenderableEntity
 	private int borderThickness;
 	private Color color;
 	private Color fill;
+	private Color dot;
 	private Stroke stroke;
 	private String label;
 
@@ -55,7 +56,8 @@ class ScreenMarkerRenderable implements RenderableEntity
 		graphics.setColor(fill);
 		graphics.fillRect(thickness, thickness, width - thickness * 2, height - thickness * 2);
 
-		//Test to draw a dot
+		//draw the dot
+		graphics.setColor(dot);
 		Random rand = new Random();
 		graphics.draw(new Ellipse2D.Double(rand.nextInt(width),rand.nextInt(height),2,2));
 

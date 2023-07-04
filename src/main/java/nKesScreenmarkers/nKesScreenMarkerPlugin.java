@@ -67,7 +67,7 @@ public class nKesScreenMarkerPlugin extends Plugin
 	private static final String CONFIG_GROUP = "nkesscreenmarkers";
 	private static final String CONFIG_KEY = "nkesm";
 	private static final String ICON_FILE = "panel_icon.png";
-	private static final String DEFAULT_MARKER_NAME = "nKe's Screen Markers";
+	private static final String DEFAULT_MARKER_NAME = "Screenmarker";
 	private static final Dimension DEFAULT_SIZE = new Dimension(2, 2);
 
 	@Getter
@@ -202,6 +202,7 @@ public class nKesScreenMarkerPlugin extends Plugin
 			pluginPanel.getSelectedBorderThickness(),
 			pluginPanel.getSelectedColor(),
 			pluginPanel.getSelectedFillColor(),
+			pluginPanel.getSelectedDotColor(),
 			true,
 			false
 		);

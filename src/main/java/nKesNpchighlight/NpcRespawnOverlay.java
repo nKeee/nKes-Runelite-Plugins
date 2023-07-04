@@ -80,7 +80,7 @@ class NpcRespawnOverlay extends Overlay
 		//Tehdään uusi lista aliveNpcsToDisplay?
 		Map<NPC, HighlightedNpc> aliveNpcsToDisplay = plugin.getHighlightedNpcs();
 
-		//Test to render dot
+		//Render a dot
 		for (NPC n: aliveNpcsToDisplay.keySet()) {
 			Rectangle r = n.getConvexHull().getBounds();
 			double x, y;
@@ -89,7 +89,7 @@ class NpcRespawnOverlay extends Overlay
 				y = r.getY() + r.getHeight() * Math.random();
 			} while(!n.getConvexHull().contains(x,y));
 			System.out.println("X = "+x+" Y = "+y);
-			Ellipse2D.Double dot = new Ellipse2D.Double(x,y,2,2);
+			Ellipse2D.Double dot = new Ellipse2D.Double(x,y,3,3);
 			graphics.setColor(config.dotColor());
 			graphics.fill(dot);
 		}

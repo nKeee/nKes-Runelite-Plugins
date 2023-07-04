@@ -61,6 +61,8 @@ public class ScreenMarkerPluginPanel extends PluginPanel
 
 	@Getter
 	private Color selectedFillColor = DEFAULT_FILL_COLOR;
+	@Getter
+	private Color selectedDotColor = DEFAULT_FILL_COLOR;
 
 	@Getter
 	private int selectedBorderThickness = DEFAULT_BORDER_THICKNESS;

@@ -41,6 +41,7 @@ public class ScreenMarker
 	private int borderThickness;
 	private Color color;
 	private Color fill;
+	private Color dot;
 	private boolean visible;
 	private boolean labelled;
 }

@@ -48,6 +48,7 @@ import java.awt.image.BufferedImage;
 class ScreenMarkerPanel extends JPanel
 {
 	private static final int DEFAULT_FILL_OPACITY = 75;
+	private static final int DEFAULT_DOT_OPACITY = 255;
 
 	private static final Border NAME_BOTTOM_BORDER = new CompoundBorder(
 		BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.DARK_GRAY_COLOR),
@@ -62,7 +63,10 @@ class ScreenMarkerPanel extends JPanel
 	private static final ImageIcon FILL_COLOR_HOVER_ICON;
 	private static final ImageIcon NO_FILL_COLOR_ICON;
 	private static final ImageIcon NO_FILL_COLOR_HOVER_ICON;
-
+	private static final ImageIcon DOT_COLOR_ICON;
+	private static final ImageIcon DOT_COLOR_HOVER_ICON;
+	private static final ImageIcon NO_DOT_COLOR_ICON;
+	private static final ImageIcon NO_DOT_COLOR_HOVER_ICON;
 	private static final ImageIcon LABEL_ICON;
 	private static final ImageIcon LABEL_HOVER_ICON;
 	private static final ImageIcon NO_LABEL_ICON;
@@ -81,6 +85,7 @@ class ScreenMarkerPanel extends JPanel
 
 	private final JLabel borderColorIndicator = new JLabel();
 	private final JLabel fillColorIndicator = new JLabel();
+	private final JLabel dotColorIndicator = new JLabel();
 	private final JLabel labelIndicator = new JLabel();
 	private final JLabel visibilityLabel = new JLabel();
 	private final JLabel deleteLabel = new JLabel();
@@ -113,6 +118,14 @@ class ScreenMarkerPanel extends JPanel
 
 		NO_FILL_COLOR_ICON = new ImageIcon(fillImgHover);
 		NO_FILL_COLOR_HOVER_ICON = new ImageIcon(ImageUtil.alphaOffset(fillImgHover, -100));
+
+		final BufferedImage dotImg = ImageUtil.loadImageResource(nKesScreenMarkerPlugin.class, "dot_color_icon.png");
+		final BufferedImage dotImgHover = ImageUtil.luminanceOffset(dotImg, -150);
+		DOT_COLOR_ICON = new ImageIcon(dotImg);
+		DOT_COLOR_HOVER_ICON = new ImageIcon(dotImgHover);
+
+		NO_DOT_COLOR_ICON = new ImageIcon(dotImgHover);
+		NO_DOT_COLOR_HOVER_ICON = new ImageIcon(ImageUtil.alphaOffset(dotImgHover, -100));
 
 		final BufferedImage labelImg = ImageUtil.loadImageResource(nKesScreenMarkerPlugin.class, "label_icon.png");
 		final BufferedImage labelImgHover = ImageUtil.luminanceOffset(labelImg, -150);
@@ -320,6 +333,32 @@ class ScreenMarkerPanel extends JPanel
 			}
 		});
 
+
+		//TEST
+		dotColorIndicator.setToolTipText("Edit dot color");
+		dotColorIndicator.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent mouseEvent)
+			{
+				openDotColorPicker();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent mouseEvent)
+			{
+				dotColorIndicator.setIcon(marker.getMarker().getDot().getAlpha() == 0 ? NO_DOT_COLOR_HOVER_ICON : DOT_COLOR_HOVER_ICON);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent mouseEvent)
+			{
+				dotColorIndicator.setIcon(marker.getMarker().getDot().getAlpha() == 0 ? NO_DOT_COLOR_ICON : DOT_COLOR_ICON);
+			}
+		});
+		//TEST
+
+
 		thicknessSpinner.setValue(marker.getMarker().getBorderThickness());
 		thicknessSpinner.setPreferredSize(new Dimension(50, 20));
 		thicknessSpinner.addChangeListener(ce -> updateThickness(true));
@@ -348,6 +387,7 @@ class ScreenMarkerPanel extends JPanel
 
 		leftActions.add(borderColorIndicator);
 		leftActions.add(fillColorIndicator);
+		leftActions.add(dotColorIndicator);
 		leftActions.add(labelIndicator);
 		leftActions.add(thicknessSpinner);
 
@@ -416,6 +456,7 @@ class ScreenMarkerPanel extends JPanel
 
 		updateVisibility();
 		updateFill();
+		updateDot();
 		updateBorder();
 		updateBorder();
 		updateLabelling();
@@ -519,6 +560,27 @@ class ScreenMarkerPanel extends JPanel
 		fillColorIndicator.setIcon(isFullyTransparent ? NO_FILL_COLOR_ICON : FILL_COLOR_ICON);
 	}
 
+
+	//TEST
+	private void updateDot()
+	{
+		final boolean isFullyTransparent = marker.getMarker().getDot().getAlpha() == 0;
+
+		if (isFullyTransparent)
+		{
+			dotColorIndicator.setBorder(null);
+		}
+		else
+		{
+			Color color = marker.getMarker().getDot();
+			Color fullColor = new Color(color.getRed(), color.getGreen(), color.getBlue());
+			dotColorIndicator.setBorder(new MatteBorder(0, 0, 3, 0, fullColor));
+		}
+
+		dotColorIndicator.setIcon(isFullyTransparent ? NO_DOT_COLOR_ICON : DOT_COLOR_ICON);
+	}
+	//TEST
+
 	private void updateBorder()
 	{
 		if (marker.getMarker().getBorderThickness() == 0)
@@ -547,6 +609,24 @@ class ScreenMarkerPanel extends JPanel
 		{
 			marker.getMarker().setFill(c);
 			updateFill();
+		});
+		colorPicker.setOnClose(c -> plugin.updateConfig());
+		colorPicker.setVisible(true);
+	}
+
+	private void openDotColorPicker()
+	{
+		final Color dotColor = marker.getMarker().getDot();
+		RuneliteColorPicker colorPicker = plugin.getColorPickerManager().create(
+				SwingUtilities.windowForComponent(this),
+				dotColor.getAlpha() == 0 ? ColorUtil.colorWithAlpha(dotColor, DEFAULT_DOT_OPACITY) : dotColor,
+				marker.getMarker().getName() + " Dot",
+				false);
+		colorPicker.setLocation(getLocationOnScreen());
+		colorPicker.setOnColorChange(c ->
+		{
+			marker.getMarker().setDot(c);
+			updateDot();
 		});
 		colorPicker.setOnClose(c -> plugin.updateConfig());
 		colorPicker.setVisible(true);
