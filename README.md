@@ -5,15 +5,18 @@
   </p>
 </div>
 
-## NPCHighLight
-- Generates a dot inside NPCs hitbox every frame
-- Fully randomised dot placement, should be a good antiban feature
+## NPCHighlight
+- Repeatedly draws a dot inside NPCs hitbox
+- Antiban to randomize the dot positon almost every frame
+- Customizable dot color
 
 ## ScreenMarkers
-- Generates a dot inside chosen area every frame
+- Draws a random dot within the chosen area
+- Antiban to randomize the dot positon almost every frame
 - Customizable dot color
 
 ## TBD
-- Learn to code
+- Learn how to code
+- More plugins
 - Add customization for dot color, speed, etc.
 - Implement <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a> to improve humanlike dot distribution
