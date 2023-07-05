@@ -18,8 +18,7 @@
 
 ## Agility
 - Antiban & random dot drawing for AHK
-- Customizable colors
-- Extra options for handling marks of grace
+- Paints dots over Marks of Grace when needed
 
 ## TBD
 - Learn how to code
