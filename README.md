@@ -4,16 +4,22 @@
     <i>Modified Runelite plugins to be used in conjunction with AutoHotKey for easier scripting and automation.</i>
   </p>
 </div>
+</br>
 
 ## NPCHighlight
 - Repeatedly draws a dot inside NPCs hitbox
 - Antiban to randomize the dot positon almost every frame
-- Customizable dot color
+- Customizable colors
 
 ## ScreenMarkers
 - Draws a random dot within the chosen area
 - Antiban to randomize the dot positon almost every frame
-- Customizable dot color
+- Customizable colors
+
+## Agility
+- Antiban & random dot drawing for AHK
+- Customizable colors
+- Extra options for handling marks of grace
 
 ## TBD
 - Learn how to code
