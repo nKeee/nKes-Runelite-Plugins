@@ -1,10 +1,8 @@
 package nKesPlugins;
 
-import nKesNpchighlight.nKesNpcIndicatorsPlugin;
-import nKesScreenmarkers.nKesScreenMarkerPlugin;
-import nKesAgility.nKesAgilityPlugin;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
+import nKesAgility.nKesAgilityPlugin;
 
 public class nKesPlugins
 {
