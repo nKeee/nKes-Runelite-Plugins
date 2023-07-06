@@ -9,7 +9,7 @@
 ## NPCHighlight
 - Repeatedly draws a dot inside NPCs hitbox
 - Antiban to randomize the dot positon almost every frame
-- Customizable colors
+- Customizable colors & dot size
 
 ## ScreenMarkers
 - Draws a random dot within the chosen area
@@ -19,6 +19,7 @@
 ## Agility
 - Antiban & random dot drawing for AHK
 - Paints dots over Marks of Grace when needed
+- Customizable colors & dot size
 
 ## TBD
 - Learn how to code
