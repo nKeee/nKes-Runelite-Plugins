@@ -75,12 +75,8 @@ class NpcRespawnOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		Map<Integer, MemorizedNpc> deadNpcsToDisplay = plugin.getDeadNpcsToDisplay();
-
-		//Tämä käydään joka framella, renderöidäät piste täällä?
-		//Tehdään uusi lista aliveNpcsToDisplay?
 		Map<NPC, HighlightedNpc> aliveNpcsToDisplay = plugin.getHighlightedNpcs();
 
-		//Render a dot
 		for (NPC n: aliveNpcsToDisplay.keySet()) {
 			Rectangle r = n.getConvexHull().getBounds();
 			double x, y;
@@ -89,8 +85,8 @@ class NpcRespawnOverlay extends Overlay
 				y = r.getY() + r.getHeight() * Math.random();
 			} while(!n.getConvexHull().contains(x,y));
 			System.out.println("X = "+x+" Y = "+y);
-			Ellipse2D.Double dot = new Ellipse2D.Double(x,y,3,3);
-			graphics.setColor(config.dotColor());
+			Ellipse2D.Double dot = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
+			graphics.setColor(config.getDotColor());
 			graphics.fill(dot);
 		}
 		

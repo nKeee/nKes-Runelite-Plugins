@@ -1,10 +1,6 @@
 package nKesAgility;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.*;
 
 import java.awt.Color;
 
@@ -66,4 +62,33 @@ public interface RooftopsConfig extends Config {
 			position = 1,
 			section = marks_of_graces
 		) default Color getMarkOfGraceColor() { return new Color(0, 255, 0, 80); }
+
+	@ConfigSection(
+			name = "AHK Dot options",
+			description = "Dot customization",
+			position = 3
+	) String dot = "dot";
+	@Alpha
+	@ConfigItem(
+			keyName = "dot",
+			name = "Dot color",
+			description = "Color of the AHK dot",
+			position = 1,
+			section = dot
+	) default Color getDotColor() { return new Color(255, 0, 0, 255); }
+	@ConfigItem(
+			keyName = "dotsize",
+			name = "Dot Size",
+			description = "Make the dot bigger or smaller if you're experiencing problems with color detection",
+			position = 2,
+			section = dot
+	)
+	@Range(
+			min = 0,
+			max = 10
+	)
+	default int dotSize()
+	{
+		return 2;
+	}
 }

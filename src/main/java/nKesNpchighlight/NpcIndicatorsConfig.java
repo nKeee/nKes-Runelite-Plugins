@@ -114,7 +114,7 @@ public interface NpcIndicatorsConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-		position = 10,
+		position = 6,
 		keyName = "npcColor",
 		name = "Highlight Color",
 		description = "Color of the NPC highlight border, menu, and text",
@@ -127,7 +127,7 @@ public interface NpcIndicatorsConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-		position = 11,
+		position = 7,
 		keyName = "fillColor",
 		name = "Fill Color",
 		description = "Color of the NPC highlight fill",
@@ -138,22 +138,8 @@ public interface NpcIndicatorsConfig extends Config
 		return new Color(0, 255, 255, 20);
 	}
 
-	//Dot color
-	@Alpha
 	@ConfigItem(
-			position = 11,
-			keyName = "dotcolor",
-			name = "Dot Color",
-			description = "Color of the dot",
-			section = renderStyleSection
-	)
-	default Color dotColor()
-	{
-		return new Color(0, 255, 255, 20);
-	}
-
-	@ConfigItem(
-		position = 12,
+		position = 8,
 		keyName = "borderWidth",
 		name = "Border Width",
 		description = "Width of the highlighted NPC border",
@@ -165,7 +151,7 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 13,
+		position = 9,
 		keyName = "outlineFeather",
 		name = "Outline feather",
 		description = "Specify between 0-4 how much of the model outline should be faded",
@@ -180,11 +166,18 @@ public interface NpcIndicatorsConfig extends Config
 		return 0;
 	}
 
+	@ConfigSection(
+			name = "NPC Options",
+			description = "Dot customization",
+			position = 2
+	) String npcoptions = "npcoptions";
+
 	@ConfigItem(
-		position = 7,
+		position = 10,
 		keyName = "npcToHighlight",
 		name = "NPCs to Highlight",
-		description = "List of NPC names to highlight. Format: (NPC), (NPC)"
+		description = "List of NPC names to highlight. Format: (NPC), (NPC)",
+			section = npcoptions
 	)
 	default String getNpcToHighlight()
 	{
@@ -194,15 +187,17 @@ public interface NpcIndicatorsConfig extends Config
 	@ConfigItem(
 		keyName = "npcToHighlight",
 		name = "",
-		description = ""
+		description = "",
+			section = npcoptions
 	)
 	void setNpcToHighlight(String npcsToHighlight);
 
 	@ConfigItem(
-		position = 8,
+		position = 11,
 		keyName = "drawNames",
 		name = "Draw names above NPC",
-		description = "Configures whether or not NPC names should be drawn above the NPC"
+		description = "Configures whether or not NPC names should be drawn above the NPC",
+			section = npcoptions
 	)
 	default boolean drawNames()
 	{
@@ -210,10 +205,11 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 9,
+		position = 12,
 		keyName = "drawMinimapNames",
 		name = "Draw names on minimap",
-		description = "Configures whether or not NPC names should be drawn on the minimap"
+		description = "Configures whether or not NPC names should be drawn on the minimap",
+			section = npcoptions
 	)
 	default boolean drawMinimapNames()
 	{
@@ -221,10 +217,11 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 10,
+		position = 13,
 		keyName = "highlightMenuNames",
 		name = "Highlight menu names",
-		description = "Highlight NPC names in right click menu"
+		description = "Highlight NPC names in right click menu",
+			section = npcoptions
 	)
 	default boolean highlightMenuNames()
 	{
@@ -232,10 +229,11 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 11,
+		position = 14,
 		keyName = "ignoreDeadNpcs",
 		name = "Ignore dead NPCs",
-		description = "Prevents highlighting NPCs after they are dead"
+		description = "Prevents highlighting NPCs after they are dead",
+			section = npcoptions
 	)
 	default boolean ignoreDeadNpcs()
 	{
@@ -243,18 +241,20 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 12,
+		position = 15,
 		keyName = "deadNpcMenuColor",
 		name = "Dead NPC menu color",
-		description = "Color of the NPC menus for dead NPCs"
+		description = "Color of the NPC menus for dead NPCs",
+			section = npcoptions
 	)
 	Color deadNpcMenuColor();
 
 	@ConfigItem(
-		position = 13,
+		position = 16,
 		keyName = "showRespawnTimer",
 		name = "Show respawn timer",
-		description = "Show respawn timer of tagged NPCs"
+		description = "Show respawn timer of tagged NPCs",
+			section = npcoptions
 	)
 	default boolean showRespawnTimer()
 	{
@@ -262,13 +262,44 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 14,
+		position = 17,
 		keyName = "ignorePets",
 		name = "Ignore pets",
-		description = "Excludes pets from being highlighted"
+		description = "Excludes pets from being highlighted",
+			section = npcoptions
 	)
 	default boolean ignorePets()
 	{
 		return true;
+	}
+
+	@ConfigSection(
+			name = "AHK Dot Options",
+			description = "Dot customization",
+			position = 3
+	) String dot = "dot";
+	@Alpha
+	@ConfigItem(
+			keyName = "dot",
+			name = "Dot color",
+			description = "Color of the AHK dot",
+			position = 1,
+			section = dot
+	) default Color getDotColor() { return new Color(255, 0, 0, 255); }
+
+	@ConfigItem(
+			keyName = "dotsize",
+			name = "Dot Size",
+			description = "Make the dot bigger or smaller if you're experiencing problems with color detection",
+			position = 2,
+			section = dot
+	)
+	@Range(
+			min = 0,
+			max = 10
+	)
+	default int dotSize()
+	{
+		return 2;
 	}
 }

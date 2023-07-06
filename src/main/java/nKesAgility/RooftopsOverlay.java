@@ -64,8 +64,8 @@ public class RooftopsOverlay extends Overlay {
             x = r.getX() + r.getWidth() * Math.random();
             y = r.getY() + r.getHeight() * Math.random();
         } while(!s.contains(x,y));
-        Ellipse2D.Double dot = new Ellipse2D.Double(x,y,3,3);
-        graphics.setColor(Color.red);
+        Ellipse2D.Double dot = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
+        graphics.setColor(config.getDotColor());
         graphics.fill(dot);
     }
 
