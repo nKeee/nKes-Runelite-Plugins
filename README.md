@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>nKe's Runelite Plugins</h1>
+  <h1>nKe's Modified Runelite Plugins</h1>
   <p>
     <i>Modified Runelite plugins to be used in conjunction with AutoHotKey for easier scripting and automation.</i>
   </p>
@@ -18,11 +18,17 @@
 
 ## Agility
 - Antiban & random dot drawing for AHK
-- Customizable colors
-- Extra options for handling marks of grace
+- Paints dots over Marks of Grace when needed
 
 ## TBD
 - Learn how to code
 - More plugins
 - Add customization for dot color, speed, etc.
 - Implement <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a> to improve humanlike dot distribution
+</br>
+<details close>
+<summary>Credits</summary>
+
+  - [Runelite devs](https://github.com/runelite/runelite) for the original Screenmarker & NPCHighlight plugins
+  - [TicTac7x](https://github.com/TicTac7x/runelite-plugins/tree/plugin-rooftops) for the 'Rooftop Agility Improved' plugin
+</details>
