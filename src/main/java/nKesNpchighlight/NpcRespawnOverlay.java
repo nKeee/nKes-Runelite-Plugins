@@ -93,8 +93,8 @@ class NpcRespawnOverlay extends Overlay
 			Rectangle r = n.getConvexHull().getBounds();
 			double x, y;
 			do {
-				x = boxMuller(r.getWidth()/2,r.getWidth()*3);
-				y = boxMuller(r.getHeight()/2,r.getHeight()*3);
+				x = r.getX() + boxMuller(r.getWidth()/2,r.getWidth()*3);
+				y = r.getY() + boxMuller(r.getHeight()/2, r.getHeight()*3);
 			} while(!n.getConvexHull().contains(x,y));
 			Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
 			graphics.setColor(config.getDotColor());

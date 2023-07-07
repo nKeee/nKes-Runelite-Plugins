@@ -74,14 +74,12 @@ public class RooftopsOverlay extends Overlay {
         Rectangle r = s.getBounds();
         double x, y;
         do {
-            x = boxMuller(r.getWidth()/2,r.getWidth()*3);
-            y = boxMuller(r.getHeight()/2,r.getHeight()*3);
+            x = r.getX() + boxMuller(r.getWidth()/2,r.getWidth()*3);
+            y = r.getY() + boxMuller(r.getHeight()/2, r.getHeight()*3);
         } while(!s.contains(x,y));
         Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
         graphics.setColor(config.getDotColor());
         graphics.fill(dotRender);
-
-
     }
 
     private void renderShape(final Graphics2D graphics, final TileObject obstacle, final Color color) {

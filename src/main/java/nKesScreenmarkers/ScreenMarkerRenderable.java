@@ -60,8 +60,8 @@ class ScreenMarkerRenderable implements RenderableEntity
 		Rectangle r = new Rectangle(width,height);
 		double x, y;
 		do {
-			x = boxMuller(width/2,width*3);
-			y = boxMuller(height/2,height*3);
+			x = r.getX() + boxMuller(r.getWidth()/2,r.getWidth()*3);
+			y = r.getY() + boxMuller(r.getHeight()/2, r.getHeight()*3);
 		} while(!r.contains(x,y));
 		Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, 3, 3);
 		graphics.setColor(dot);
