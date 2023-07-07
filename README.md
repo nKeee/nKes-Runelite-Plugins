@@ -8,9 +8,8 @@
 
 <h2>What is this?</h2>
 <p>
-  Goal is to modify common Runelite plugins for easier <a target="_blank" href="https://www.autohotkey.com/">AutoHotKey</a> scripting.</br>
-  Plugins will work as their original counterparts, but with a few extra options to render a random dot inside npc/object hitbox. </br>
-  Dot rendering is randomized using <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a>, which should ensure humanlike distribution of clicks.
+  Goal is to modify common Runelite plugins for easier <a target="_blank" href="https://www.autohotkey.com/">AutoHotKey</a> scripting, this is achieved by rendering a colorized dot in a random position inside NPCs/Objects hitbox. </br>
+  Antiban is achieved with <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a>, which should ensure humanlike distribution of clicks.
 </p>
 
 ## NPCHighlight
