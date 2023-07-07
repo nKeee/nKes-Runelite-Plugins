@@ -59,14 +59,13 @@ class ScreenMarkerRenderable implements RenderableEntity
 		//draw the dot
 		Rectangle r = new Rectangle(width,height);
 		double x, y;
-		Random rnd = new Random();
 		do {
-			x = r.getX() + r.getWidth() * rnd.nextGaussian();
-			y = r.getY() + r.getHeight() * rnd.nextGaussian();
+			x = boxMuller(width/2,width*3);
+			y = boxMuller(height/2,height*3);
 		} while(!r.contains(x,y));
-		Ellipse2D.Double dotr = new Ellipse2D.Double(x,y, 3, 3);
+		Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, 3, 3);
 		graphics.setColor(dot);
-		graphics.fill(dotr);
+		graphics.fill(dotRender);
 
 		//because the stroke is centered on the rectangle we draw, we need to translate where we draw the rectangle
 		//this is to ensure that the rectangle we draw is our preferred size
@@ -81,5 +80,16 @@ class ScreenMarkerRenderable implements RenderableEntity
 		}
 
 		return size;
+	}
+	public double boxMuller(double mean, double variance) {
+		double s,x,y;
+		do {
+			x = Math.random() * 2.0 - 1.0;
+			y = Math.random() * 2.0 - 1.0;
+			s = Math.pow(x, 2) + Math.pow(y, 2);
+		} while ( (s > 1) || (s == 0) );
+
+		double gaussian = x * Math.sqrt(-2*Math.log(s)/s);
+		return mean + gaussian * Math.sqrt(variance);
 	}
 }

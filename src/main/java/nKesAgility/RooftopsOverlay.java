@@ -56,19 +56,32 @@ public class RooftopsOverlay extends Overlay {
         return null;
     }
 
+    public double boxMuller(double mean, double variance) {
+        double s,x,y;
+        do {
+            x = Math.random() * 2.0 - 1.0;
+            y = Math.random() * 2.0 - 1.0;
+            s = Math.pow(x, 2) + Math.pow(y, 2);
+        } while ( (s > 1) || (s == 0) );
+
+        double gaussian = x * Math.sqrt(-2*Math.log(s)/s);
+        return mean + gaussian * Math.sqrt(variance);
+    }
+
     private void dotRender(Graphics2D graphics, Shape s){
         if (s == null) return;
 
         Rectangle r = s.getBounds();
         double x, y;
-        Random rnd = new Random();
         do {
-            x = r.getX() + r.getWidth() * rnd.nextGaussian();
-            y = r.getY() + r.getHeight() * rnd.nextGaussian();
+            x = boxMuller(r.getWidth()/2,r.getWidth()*3);
+            y = boxMuller(r.getHeight()/2,r.getHeight()*3);
         } while(!s.contains(x,y));
-        Ellipse2D.Double dot = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
+        Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
         graphics.setColor(config.getDotColor());
-        graphics.fill(dot);
+        graphics.fill(dotRender);
+
+
     }
 
     private void renderShape(final Graphics2D graphics, final TileObject obstacle, final Color color) {
