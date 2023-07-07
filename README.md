@@ -6,26 +6,30 @@
 </div>
 </br>
 
+<h2>What is this?</h2>
+<p>
+  Goal is to modify common Runelite plugins for easier <a target="_blank" href="https://www.autohotkey.com/">AutoHotKey</a> scripting.</br>
+  Plugins will work as their original counterparts, but with a few extra options to render a random dot inside npc/object hitbox. </br>
+  Dot rendering is randomized using <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a>, which should ensure humanlike distribution of clicks.
+</p>
+
 ## NPCHighlight
-- Repeatedly draws a dot inside NPCs hitbox
-- Antiban to randomize the dot positon almost every frame
-- Customizable colors & dot size
+- Fully working with support for multiple simultaneous NPCs
+- Customization options for dot color & size
 
 ## ScreenMarkers
-- Draws a random dot within the chosen area
-- Antiban to randomize the dot positon almost every frame
-- Customizable colors
+- Fully working, supports multiple screenmarkers flawlessly
+- Customization options for dot color
 
 ## Agility
-- Antiban & random dot drawing for AHK
-- Paints dots over Marks of Grace when needed
-- Customizable colors & dot size
+- Fully working, supports all rooftop courses
+- Handles marks of grace by prioritising them before moving to next obstacle
+- Customization options for dot color & size
 
 ## TBD
 - Learn how to code
 - More plugins
-- Add customization for dot color, speed, etc.
-- Implement <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a> to improve humanlike dot distribution
+- More customization options
 </br>
 <details close>
 <summary>Credits</summary>
