@@ -9,6 +9,7 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 public class RooftopsOverlay extends Overlay {
     private final Client client;
@@ -60,9 +61,10 @@ public class RooftopsOverlay extends Overlay {
 
         Rectangle r = s.getBounds();
         double x, y;
+        Random rnd = new Random();
         do {
-            x = r.getX() + r.getWidth() * Math.random();
-            y = r.getY() + r.getHeight() * Math.random();
+            x = r.getX() + r.getWidth() * rnd.nextGaussian();
+            y = r.getY() + r.getHeight() * rnd.nextGaussian();
         } while(!s.contains(x,y));
         Ellipse2D.Double dot = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
         graphics.setColor(config.getDotColor());

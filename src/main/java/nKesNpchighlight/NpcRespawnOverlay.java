@@ -43,6 +43,7 @@ import java.text.NumberFormat;
 import java.time.Instant;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 class NpcRespawnOverlay extends Overlay
 {
@@ -78,11 +79,12 @@ class NpcRespawnOverlay extends Overlay
 		Map<NPC, HighlightedNpc> aliveNpcsToDisplay = plugin.getHighlightedNpcs();
 
 		for (NPC n: aliveNpcsToDisplay.keySet()) {
+			Random rnd = new Random();
 			Rectangle r = n.getConvexHull().getBounds();
 			double x, y;
 			do {
-				x = r.getX() + r.getWidth() * Math.random();
-				y = r.getY() + r.getHeight() * Math.random();
+				x = r.getX() + r.getWidth() * rnd.nextGaussian();
+				y = r.getY() + r.getHeight() * rnd.nextGaussian();
 			} while(!n.getConvexHull().contains(x,y));
 			System.out.println("X = "+x+" Y = "+y);
 			Ellipse2D.Double dot = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());

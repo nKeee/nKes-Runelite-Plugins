@@ -57,9 +57,16 @@ class ScreenMarkerRenderable implements RenderableEntity
 		graphics.fillRect(thickness, thickness, width - thickness * 2, height - thickness * 2);
 
 		//draw the dot
+		Rectangle r = new Rectangle(width,height);
+		double x, y;
+		Random rnd = new Random();
+		do {
+			x = r.getX() + r.getWidth() * rnd.nextGaussian();
+			y = r.getY() + r.getHeight() * rnd.nextGaussian();
+		} while(!r.contains(x,y));
+		Ellipse2D.Double dotr = new Ellipse2D.Double(x,y, 3, 3);
 		graphics.setColor(dot);
-		Random rand = new Random();
-		graphics.draw(new Ellipse2D.Double(rand.nextInt(width),rand.nextInt(height),2,2));
+		graphics.fill(dotr);
 
 		//because the stroke is centered on the rectangle we draw, we need to translate where we draw the rectangle
 		//this is to ensure that the rectangle we draw is our preferred size
