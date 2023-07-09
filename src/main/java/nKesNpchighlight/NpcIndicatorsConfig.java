@@ -302,4 +302,19 @@ public interface NpcIndicatorsConfig extends Config
 	{
 		return 2;
 	}
+	@ConfigItem(
+			keyName = "deviation",
+			name = "Deviation",
+			description = "Change the dispersion of dots",
+			position = 3,
+			section = dot
+	)
+	@Range(
+			min = 1,
+			max = 10
+	)
+	default int deviation()
+	{
+		return 2;
+	}
 }
