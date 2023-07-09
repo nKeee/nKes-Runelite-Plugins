@@ -15,16 +15,20 @@
 
 ## NPCHighlight
 - Fully working with support for multiple simultaneous NPCs
-- Customization options for dot color & size
+- Customization: dot size & color
 
 ## ScreenMarkers
 - Fully working, supports multiple screenmarkers flawlessly
-- Customization options for dot color
+- Customization: dot color
 
 ## Agility
 - Fully working, supports all rooftop courses
 - Handles marks of grace by prioritising them before moving to next obstacle
-- Customization options for dot color & size
+- Customization: dot size & color
+
+## ObjectMarkers
+- Fully working, supports multiple simultaneous objects
+- Customization: dot size & color
 
 ## TBD
 - Learn how to code
