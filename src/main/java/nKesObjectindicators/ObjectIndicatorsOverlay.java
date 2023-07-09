@@ -29,6 +29,7 @@ import com.google.common.base.Strings;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.DecorativeObject;
@@ -138,27 +139,24 @@ class ObjectIndicatorsOverlay extends Overlay
 	private void dotRender(Graphics2D graphics, Shape s){
 		if (s == null) return;
 
-		Rectangle r = s.getBounds();
+		Rectangle2D r = s.getBounds();
 		double x, y;
 		do {
-			x = r.getX() + boxMuller(r.getWidth()/2,r.getWidth()*3);
-			y = r.getY() + boxMuller(r.getHeight()/2, r.getHeight()*3);
-		} while(!s.contains(x,y));
-		Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
-		graphics.setColor(config.getDotColor());
-		graphics.fill(dotRender);
+			x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/config.deviation());
+			y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/config.deviation());
+		} while(!r.contains(x,y));
+		Shape dotRender = new Ellipse2D.Double(x- config.dotSize(),y- config.dotSize(), config.dotSize(), config.dotSize());
+		if(r.contains(dotRender.getBounds2D())){
+			graphics.setColor(config.getDotColor());
+			graphics.fill(dotRender);
+		}
 	}
 
 	public double boxMuller(double mean, double variance) {
-		double s,x,y;
-		do {
-			x = Math.random() * 2.0 - 1.0;
-			y = Math.random() * 2.0 - 1.0;
-			s = Math.pow(x, 2) + Math.pow(y, 2);
-		} while ( (s > 1) || (s == 0) );
-
-		double gaussian = x * Math.sqrt(-2*Math.log(s)/s);
-		return mean + gaussian * Math.sqrt(variance);
+		double U = Math.random();
+		double V = (Math.random() * 5.2831853071795862);
+		U = Math.sqrt(-2*Math.log(U))*variance;
+		return mean + U*Math.cos(V);
 	}
 
 	private void renderConvexHull(Graphics2D graphics, TileObject object, Color color, Stroke stroke)

@@ -203,6 +203,8 @@ public class nKesScreenMarkerPlugin extends Plugin
 			pluginPanel.getSelectedColor(),
 			pluginPanel.getSelectedFillColor(),
 			pluginPanel.getSelectedDotColor(),
+				pluginPanel.getSelectedDotSize(),
+				pluginPanel.getSelectedDeviation(),
 			true,
 			false
 		);

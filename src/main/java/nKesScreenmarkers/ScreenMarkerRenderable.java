@@ -31,6 +31,7 @@ import net.runelite.client.ui.overlay.RenderableEntity;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 @Getter(AccessLevel.PACKAGE)
@@ -42,6 +43,8 @@ class ScreenMarkerRenderable implements RenderableEntity
 	private Color color;
 	private Color fill;
 	private Color dot;
+	private int dotSize;
+	private int deviation;
 	private Stroke stroke;
 	private String label;
 
@@ -56,17 +59,6 @@ class ScreenMarkerRenderable implements RenderableEntity
 		graphics.setColor(fill);
 		graphics.fillRect(thickness, thickness, width - thickness * 2, height - thickness * 2);
 
-		//draw the dot
-		Rectangle r = new Rectangle(width,height);
-		double x, y;
-		do {
-			x = r.getX() + boxMuller(r.getWidth()/2,r.getWidth()*3);
-			y = r.getY() + boxMuller(r.getHeight()/2, r.getHeight()*3);
-		} while(!r.contains(x,y));
-		Ellipse2D.Double dotRender = new Ellipse2D.Double(x,y, 3, 3);
-		graphics.setColor(dot);
-		graphics.fill(dotRender);
-
 		//because the stroke is centered on the rectangle we draw, we need to translate where we draw the rectangle
 		//this is to ensure that the rectangle we draw is our preferred size
 		int offset = thickness / 2;
@@ -79,17 +71,25 @@ class ScreenMarkerRenderable implements RenderableEntity
 			graphics.drawString(label, 0, 0);
 		}
 
+		//draw the dot
+		Rectangle2D r = new Rectangle(width,height);
+		double x, y;
+		do {
+			x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/deviation);
+			y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/deviation);
+		} while(!r.contains(x,y));
+		Shape dotRender = new Ellipse2D.Double(x-dotSize,y-dotSize, dotSize, dotSize);
+		if(r.contains(dotRender.getBounds2D())){
+			graphics.setColor(dot);
+			graphics.fill(dotRender);
+		}
+
 		return size;
 	}
 	public double boxMuller(double mean, double variance) {
-		double s,x,y;
-		do {
-			x = Math.random() * 2.0 - 1.0;
-			y = Math.random() * 2.0 - 1.0;
-			s = Math.pow(x, 2) + Math.pow(y, 2);
-		} while ( (s > 1) || (s == 0) );
-
-		double gaussian = x * Math.sqrt(-2*Math.log(s)/s);
-		return mean + gaussian * Math.sqrt(variance);
+		double U = Math.random();
+		double V = (Math.random() * 5.2831853071795862);
+		U = Math.sqrt(-2*Math.log(U))*variance;
+		return mean + U*Math.cos(V);
 	}
 }

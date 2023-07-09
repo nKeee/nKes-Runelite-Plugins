@@ -95,8 +95,12 @@ class ScreenMarkerPanel extends JPanel
 	private final JLabel cancel = new JLabel("Cancel");
 	private final JLabel rename = new JLabel("Rename");
 
-	private final SpinnerModel spinnerModel = new SpinnerNumberModel(5, 0, Integer.MAX_VALUE, 1);
+	private final SpinnerModel spinnerModel = new SpinnerNumberModel(10, 0, Integer.MAX_VALUE, 1);
+	private final SpinnerModel spinnerModel2 = new SpinnerNumberModel(10, 0, Integer.MAX_VALUE, 1);
+	private final SpinnerModel spinnerModel3 = new SpinnerNumberModel(10, 1, Integer.MAX_VALUE, 1);
 	private final JSpinner thicknessSpinner = new JSpinner(spinnerModel);
+	private final JSpinner dotSizeSpinner = new JSpinner(spinnerModel2);
+	private final JSpinner deviationSpinner = new JSpinner(spinnerModel3);
 
 	private boolean visible;
 	private boolean showLabel;
@@ -288,6 +292,8 @@ class ScreenMarkerPanel extends JPanel
 
 		JPanel leftActions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
 		leftActions.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+		JPanel extraActions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+		extraActions.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 
 		borderColorIndicator.setToolTipText("Edit border color");
 		borderColorIndicator.addMouseListener(new MouseAdapter()
@@ -356,6 +362,16 @@ class ScreenMarkerPanel extends JPanel
 				dotColorIndicator.setIcon(marker.getMarker().getDot().getAlpha() == 0 ? NO_DOT_COLOR_ICON : DOT_COLOR_ICON);
 			}
 		});
+
+		dotSizeSpinner.setValue(marker.getMarker().getDotSize());
+		dotSizeSpinner.setPreferredSize(new Dimension(50, 20));
+		dotSizeSpinner.addChangeListener(ce -> updateDotSize(true));
+		dotSizeSpinner.setToolTipText("Dot size");
+
+		deviationSpinner.setValue(marker.getMarker().getDeviation());
+		deviationSpinner.setPreferredSize(new Dimension(50, 20));
+		deviationSpinner.addChangeListener(ce -> updateDeviation(true));
+		deviationSpinner.setToolTipText("Deviation");
 		//TEST
 
 
@@ -387,8 +403,10 @@ class ScreenMarkerPanel extends JPanel
 
 		leftActions.add(borderColorIndicator);
 		leftActions.add(fillColorIndicator);
-		leftActions.add(dotColorIndicator);
+		extraActions.add(dotColorIndicator);
 		leftActions.add(labelIndicator);
+		extraActions.add(dotSizeSpinner);
+		extraActions.add(deviationSpinner);
 		leftActions.add(thicknessSpinner);
 
 		JPanel rightActions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
@@ -449,6 +467,7 @@ class ScreenMarkerPanel extends JPanel
 		rightActions.add(deleteLabel);
 
 		bottomContainer.add(leftActions, BorderLayout.WEST);
+		bottomContainer.add(extraActions, BorderLayout.SOUTH);
 		bottomContainer.add(rightActions, BorderLayout.EAST);
 
 		add(nameWrapper, BorderLayout.NORTH);
@@ -524,6 +543,22 @@ class ScreenMarkerPanel extends JPanel
 	{
 		marker.getMarker().setBorderThickness((Integer) thicknessSpinner.getValue());
 		updateBorder();
+		if (save)
+		{
+			plugin.updateConfig();
+		}
+	}
+	private void updateDotSize(boolean save)
+	{
+		marker.getMarker().setDotSize((Integer) dotSizeSpinner.getValue());
+		if (save)
+		{
+			plugin.updateConfig();
+		}
+	}
+	private void updateDeviation(boolean save)
+	{
+		marker.getMarker().setDeviation((Integer) deviationSpinner.getValue());
 		if (save)
 		{
 			plugin.updateConfig();

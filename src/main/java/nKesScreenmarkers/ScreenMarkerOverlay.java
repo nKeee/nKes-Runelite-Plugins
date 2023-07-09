@@ -78,6 +78,8 @@ public class ScreenMarkerOverlay extends Overlay
 		screenMarkerRenderable.setColor(marker.getColor());
 		screenMarkerRenderable.setFill(marker.getFill());
 		screenMarkerRenderable.setDot(marker.getDot());
+		screenMarkerRenderable.setDotSize(marker.getDotSize());
+		screenMarkerRenderable.setDeviation(marker.getDeviation());
 		screenMarkerRenderable.setStroke(new BasicStroke(marker.getBorderThickness()));
 		screenMarkerRenderable.setSize(preferredSize);
 		screenMarkerRenderable.setLabel(marker.isLabelled() ? marker.getName() : "");

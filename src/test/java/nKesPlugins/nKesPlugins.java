@@ -14,7 +14,7 @@ public class nKesPlugins
 		//Testing only, only one plugin can be loaded this way
 
 		//ExternalPluginManager.loadBuiltin((nKesObjectIndicatorsPlugin.class));
-		ExternalPluginManager.loadBuiltin(nKesAgilityPlugin.class);
+		//ExternalPluginManager.loadBuiltin(nKesAgilityPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesNpcIndicatorsPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesScreenMarkerPlugin.class);
 
