@@ -12,28 +12,32 @@
   This is mainly achieved by rendering a colorized dot in a random position inside NPCs/Objects hitbox. </br>
   Antiban is done with <a target="_blank" href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a>, which should ensure humanlike distribution of dots inside hitboxes.
 </p>
+<details open>
+<summary>Customization options (All plugins)</summary>
+
+- Customizable Dot size and color for easier AHK scripting.
+- Box-Muller Transform deviation can be changed in plugin settings.
+</details>
+</br>
 
 ## NPCHighlight
 - Fully working with support for multiple simultaneous NPCs
-- Customization: dot size & color
 
 ## ScreenMarkers
 - Fully working, supports multiple screenmarkers flawlessly
-- Customization: dot color
 
 ## Agility
 - Fully working, supports all rooftop courses
 - Handles marks of grace by prioritising them before moving to next obstacle
-- Customization: dot size & color
 
 ## ObjectMarkers
 - Fully working, supports multiple simultaneous objects
-- Customization: dot size & color
 
 ## TBD
 - Learn how to code
 - More plugins
-- More customization options
+- More options
+
 </br>
 <details close>
 <summary>Credits</summary>
