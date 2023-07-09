@@ -1,6 +1,8 @@
 package nKesPlugins;
 
 import nKesAgility.nKesAgilityPlugin;
+import nKesIdleAlert.nKesAfkAlertPlugin;
+import nKesIdlenotifier.nKesIdleNotifierPlugin;
 import nKesNpchighlight.nKesNpcIndicatorsPlugin;
 import nKesObjectindicators.nKesObjectIndicatorsPlugin;
 import nKesScreenmarkers.nKesScreenMarkerPlugin;
@@ -17,6 +19,8 @@ public class nKesPlugins
 		//ExternalPluginManager.loadBuiltin(nKesAgilityPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesNpcIndicatorsPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesScreenMarkerPlugin.class);
+		ExternalPluginManager.loadBuiltin(nKesIdleNotifierPlugin.class);
+		//ExternalPluginManager.loadBuiltin(nKesAfkAlertPlugin.class);
 
 		RuneLite.main(args);
 	}
