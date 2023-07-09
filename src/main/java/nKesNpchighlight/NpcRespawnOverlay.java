@@ -91,8 +91,8 @@ class NpcRespawnOverlay extends Overlay
 			do {
 				x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/config.deviation());
 				y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/config.deviation());
-			} while(!r.contains(x,y));
-			Shape dotRender = new Ellipse2D.Double(x- config.dotSize(),y- config.dotSize(), config.dotSize(), config.dotSize());
+			} while(!n.getConvexHull().contains(x,y));
+			Shape dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
 			if(r.contains(dotRender.getBounds2D())){
 				graphics.setColor(config.getDotColor());
 				graphics.fill(dotRender);
