@@ -33,6 +33,10 @@
 ## ObjectMarkers
 - Fully working, supports multiple simultaneous objects
 
+## IdleNotifier
+- Displays a box based on if character is interacting/moving
+- Both idle, and active colors are customizable
+
 ## TBD
 - Learn how to code
 - More plugins
