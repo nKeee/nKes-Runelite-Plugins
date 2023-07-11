@@ -23,7 +23,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package nKesObjectindicators;
-import nKesObjectindicators.*;
 
 import com.google.common.base.Strings;
 

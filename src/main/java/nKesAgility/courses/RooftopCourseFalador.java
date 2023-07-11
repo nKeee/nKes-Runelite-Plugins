@@ -25,7 +25,10 @@ public class RooftopCourseFalador extends Course {
                 new Obstacle(14925, 3, new int[][]{{3025, 3335}, {3025, 3334}, {3025, 3333}, {3025, 3332}}),
             },
 
-            new MarkOfGrace[]{}
+            new MarkOfGrace[]{
+                    new MarkOfGrace(3019, 3345, 14919),
+                    new MarkOfGrace(3015, 3333, 14924)
+            }
         );
     }
 }
