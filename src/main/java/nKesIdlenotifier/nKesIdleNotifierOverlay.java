@@ -1,16 +1,12 @@
 package nKesIdlenotifier;
 
 import net.runelite.api.Client;
-import net.runelite.api.Player;
 import javax.inject.Inject;
-import net.runelite.api.events.GameTick;
-import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.time.Duration;
 
 class nKesIdleNotifierOverlay extends Overlay {
     private final Client client;

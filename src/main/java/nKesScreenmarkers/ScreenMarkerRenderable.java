@@ -76,7 +76,11 @@ class ScreenMarkerRenderable implements RenderableEntity
 		double x, y;
 		do {
 			x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/deviation);
+			if (x <= 1)
+				x++;
 			y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/deviation);
+			if (y <= 1)
+				y++;
 		} while(!r.contains(x,y));
 		Shape dotRender = new Ellipse2D.Double(x,y, dotSize, dotSize);
 		if(r.contains(dotRender.getBounds2D())){

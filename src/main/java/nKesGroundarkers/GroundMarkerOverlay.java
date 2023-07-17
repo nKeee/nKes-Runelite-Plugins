@@ -100,7 +100,11 @@ public class GroundMarkerOverlay extends Overlay
 		double x, y;
 		do {
 			x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/config.deviation());
+			if (x <= 1)
+				x++;
 			y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/config.deviation());
+			if (y <= 1)
+				y++;
 		} while(!s.contains(x,y));
 		Shape dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
 		if(r.contains(dotRender.getBounds2D())){
