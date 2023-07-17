@@ -37,6 +37,9 @@
 - Displays a box based on if character is interacting/moving
 - Both idle, and active colors are customizable
 
+## Groundmarkers
+- Works with multiple marked tiles at the same time
+
 ## TBD
 - Learn how to code
 - More plugins
