@@ -1,11 +1,6 @@
 package nKesPlugins;
 
-import nKesAgility.nKesAgilityPlugin;
-import nKesGroundarkers.nKesGroundMarkerPlugin;
-import nKesIdlenotifier.nKesIdleNotifierPlugin;
-import nKesNpchighlight.nKesNpcIndicatorsPlugin;
-import nKesObjectindicators.nKesObjectIndicatorsPlugin;
-import nKesScreenmarkers.nKesScreenMarkerPlugin;
+import nKesGroundmarkers.nKesGroundMarkerPlugin;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
@@ -20,7 +15,7 @@ public class nKesPlugins
 		//ExternalPluginManager.loadBuiltin(nKesNpcIndicatorsPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesScreenMarkerPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesIdleNotifierPlugin.class);
-		ExternalPluginManager.loadBuiltin(nKesGroundMarkerPlugin.class);
+		//ExternalPluginManager.loadBuiltin(nKesGroundMarkerPlugin.class);
 
 		RuneLite.main(args);
 	}

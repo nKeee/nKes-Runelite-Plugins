@@ -116,4 +116,49 @@ public interface IdleNotifierConfig extends Config
 			position = 9
 	) default Color getActiveColor() { return new Color(0, 255, 0, 255); }
 
+	@ConfigItem(
+			keyName = "boxX",
+			name = "BoxX",
+			description = "Change the X coord of the box",
+			position = 10
+	)
+	@Range(
+			min = 0,
+			max = 99999
+	)
+	default int getBoxX()
+	{
+		return 0;
+	}
+
+	@ConfigItem(
+			keyName = "boxY",
+			name = "BoxY",
+			description = "Change the Y coord of the box",
+			position = 11
+	)
+	@Range(
+			min = 0,
+			max = 99999
+	)
+	default int getBoxY()
+	{
+		return 0;
+	}
+
+	@ConfigItem(
+			keyName = "boxSize",
+			name = "BoxSize",
+			description = "Change the size of the box",
+			position = 12
+	)
+	@Range(
+			min = 0,
+			max = 99999
+	)
+	default int getBoxSize()
+	{
+		return 50;
+	}
+
 }

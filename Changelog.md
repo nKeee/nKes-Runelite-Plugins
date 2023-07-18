@@ -2,6 +2,16 @@
 
 <details>
 <summary>
+19.7
+</summary>
+
+Added customization options for:
+- Idlenotifiers box size
+- Idlenotifiers box X / Y positions
+</details>
+
+<details>
+<summary>
 17.7
 </summary>
 

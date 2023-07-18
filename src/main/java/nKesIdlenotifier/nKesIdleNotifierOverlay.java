@@ -24,7 +24,7 @@ class nKesIdleNotifierOverlay extends Overlay {
     }
     @Override
     public Dimension render(Graphics2D graphics) {
-        Rectangle2D r = new Rectangle2D.Double(0,0,50,50);
+        Rectangle2D r = new Rectangle2D.Double(config.getBoxX(),config.getBoxY(),config.getBoxSize(),config.getBoxSize());
 
         if (plugin.moving || plugin.interacting){
             graphics.setColor(config.getActiveColor());

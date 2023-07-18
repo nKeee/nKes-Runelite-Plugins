@@ -49,6 +49,6 @@
 <details close>
 <summary>Credits</summary>
 
-  - [Runelite devs](https://github.com/runelite/runelite) for the original Screenmarker & NPCHighlight plugins
+  - [Runelite devs](https://github.com/runelite/runelite) for creating Runelite & the base plugins
   - [TicTac7x](https://github.com/TicTac7x/runelite-plugins/tree/plugin-rooftops) for the 'Rooftop Agility Improved' plugin
 </details>
