@@ -22,7 +22,7 @@ public class RooftopCourseRellekka extends Course {
             new MarkOfGrace[]{
                 //
                 new MarkOfGrace(2623, 3675, 14947),
-                new MarkOfGrace(2627, 3654, 14990), new MarkOfGrace(2629, 3653, 14990),
+                new MarkOfGrace(2627, 3654, 14990), new MarkOfGrace(2629, 3653, 14990), new MarkOfGrace(2628, 3652,14990),
                 //
                 new MarkOfGrace(2641, 3650, 14991), new MarkOfGrace(2642, 3651, 14991)
             }
