@@ -37,6 +37,7 @@ import java.util.regex.Pattern;
 
 public class RooftopsCourseManager {
     private final Client client;
+    private final RooftopsConfig config;
 
     private final Pattern lap_complete = Pattern.compile(".*lap count is:.*");
 
@@ -70,8 +71,9 @@ public class RooftopsCourseManager {
 
     private boolean is_near_course;
 
-    public RooftopsCourseManager(final Client client) {
+    public RooftopsCourseManager(final Client client, RooftopsConfig config) {
         this.client = client;
+        this.config = config;
     }
 
     public void onTileObjectSpawned(final TileObject object) {
@@ -149,10 +151,12 @@ public class RooftopsCourseManager {
     public boolean isStoppingObstacle(final int obstacle_id) {
         if (course == null) return false;
 
-        for (final Tile tile : marks_of_graces) {
-            for (final MarkOfGrace mark : course.getMarkOfGraces()) {
-                if (mark.obstacle == obstacle_id && mark.x == tile.getWorldLocation().getX() && mark.y == tile.getWorldLocation().getY()) {
-                    return true;
+        if (config.marksofgraceHandler()){
+            for (final Tile tile : marks_of_graces) {
+                for (final MarkOfGrace mark : course.getMarkOfGraces()) {
+                    if (mark.obstacle == obstacle_id && mark.x == tile.getWorldLocation().getX() && mark.y == tile.getWorldLocation().getY()) {
+                        return true;
+                    }
                 }
             }
         }

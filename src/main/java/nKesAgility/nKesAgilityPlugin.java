@@ -51,7 +51,7 @@ public class nKesAgilityPlugin extends Plugin {
 
 	@Override
 	protected void startUp() {
-		course_manager = new RooftopsCourseManager(client);
+		course_manager = new RooftopsCourseManager(client, config);
 		overlay_rooftops = new RooftopsOverlay(client, config, course_manager);
 		overlays.add(overlay_rooftops);
 	}
