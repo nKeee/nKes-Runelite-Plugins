@@ -107,4 +107,16 @@ public interface RooftopsConfig extends Config {
 	{
 		return 2;
 	}
+
+	@ConfigItem(
+			keyName = "marksofgracehandler",
+			name = "Paint marks of grace",
+			description = "Decides if marks of graces will be painted",
+			position = 4,
+			section = dot
+	)
+	default boolean marksofgraceHandler()
+	{
+		return true;
+	}
 }

@@ -47,13 +47,16 @@ public class RooftopsOverlay extends Overlay {
         }
 
         // Marks
-        for (final Tile mark : course_manager.getMarksOfGraces()) {
-            renderShape(graphics, mark.getItemLayer(), config.getMarkOfGraceColor());
+        if (config.marksofgraceHandler()){
+            for (final Tile mark : course_manager.getMarksOfGraces()) {
+                renderShape(graphics, mark.getItemLayer(), config.getMarkOfGraceColor());
 
-            if (course_manager.isStoppingObstacle(course_manager.getNextObstacle().getId())){
-                dotRender(graphics,mark.getItemLayer().getClickbox());
+                if (course_manager.isStoppingObstacle(course_manager.getNextObstacle().getId())){
+                    dotRender(graphics,mark.getItemLayer().getClickbox());
+                }
             }
         }
+
         return null;
     }
 
