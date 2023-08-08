@@ -8,7 +8,7 @@ publishing {
 	repositories {
 		maven {
 			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+			url = uri("https://maven.pkg.github.com/nKeee/nkes-runelite-plugins")
 			credentials {
 				username = project.findProperty("gpr.user") ?: System.getenv("api.username")
 				password = project.findProperty("gpr.key") ?: System.getenv("api.token")
