@@ -606,7 +606,6 @@ public class nKesIdleNotifierPlugin extends Plugin
 				lastInteract = null;
 				lastInteracting = null;
 				interacting = false;
-				System.out.println("Interaction ended");
 				return true;
 			}
 		}
@@ -614,7 +613,6 @@ public class nKesIdleNotifierPlugin extends Plugin
 		{
 			lastAnimating = Instant.now();
 			interacting = true;
-			System.out.println("Interacting...");
 		}
 		return false;
 	}
@@ -637,7 +635,6 @@ public class nKesIdleNotifierPlugin extends Plugin
 			{
 				notifyPosition = false;
 				// Return true only if we weren't just breaking out of an animation
-				System.out.println("Movement stopped");
 				moving = false;
 				return lastAnimation == IDLE;
 			}
@@ -649,7 +646,6 @@ public class nKesIdleNotifierPlugin extends Plugin
 			lastMoving = Instant.now();
 
 			moving = true;
-			System.out.println("Moving...");
 		}
 		return false;
 	}

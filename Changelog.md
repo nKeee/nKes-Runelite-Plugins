@@ -2,6 +2,14 @@
 
 <details>
 <summary>
+8.9
+</summary>
+
+- Added: Advanced Notifications plugin (WIP)
+</details>
+
+<details>
+<summary>
 5.8
 </summary>
 
