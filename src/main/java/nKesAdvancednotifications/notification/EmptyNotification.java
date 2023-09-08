@@ -33,7 +33,10 @@ public class EmptyNotification extends Notification
 			enableBox();
 			doNotification(comparator.object.notification("empty space", comparatorParam));
 		}
-		displayBoxTimer();
+		else{
+			displayBoxTimer();
+		}
+
 	}
 
 	@Override

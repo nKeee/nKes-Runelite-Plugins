@@ -34,6 +34,7 @@ public abstract class Notification
 
 	private Duration dur = Duration.ofMillis(500);
 	private Instant inst = Instant.now();
+	private int i = 0;
 
 	@Getter
 	private final transient DraggableContainer<Condition> conditionContainer = new DraggableContainer<Condition>() {
@@ -70,15 +71,25 @@ public abstract class Notification
 	}
 
 
-	//only called from empty/itemnotifications, timer doesnt work ATM, but overall logic works
 	void enableBox(){
 		plugin.displayBox = true;
 		inst = Instant.now();
+
+		i = 2;
 	}
-	//only called from empty/itemnotifications, timer doesnt work ATM, but overall logic works
+	//only called from empty/itemnotifications, timer doesnt work atm because its not called every tick
 	void displayBoxTimer(){
+		/*
 		if (Instant.now().compareTo(inst.plus(dur)) >= 0){
-			plugin.displayBox = false;
+			plugin.displayBox = false
+		}
+		*/
+
+		if (i >= 1){
+			if (i == 1){
+				plugin.displayBox = false;
+			}
+			i--;
 		}
 	}
 

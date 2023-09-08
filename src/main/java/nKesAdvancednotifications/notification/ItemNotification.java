@@ -37,7 +37,10 @@ public class ItemNotification extends Notification
 			enableBox();
 			doNotification(comparator.object.notification(item, comparatorParam));
 		}
-		displayBoxTimer();
+		else{
+			displayBoxTimer();
+		}
+
 	}
 
 	@Override
