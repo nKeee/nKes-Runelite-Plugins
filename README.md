@@ -43,6 +43,9 @@
 ## Advanced Notifications (WIP)
 - Displays a box when conditions are met
 
+## Inventory Tags
+-Fully working, supports any amount of items, etc.
+
 ## TBD
 - Learn how to code
 - More plugins

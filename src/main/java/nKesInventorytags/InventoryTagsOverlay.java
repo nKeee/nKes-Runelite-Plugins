@@ -22,14 +22,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.inventorytags;
+package nKesInventorytags;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import net.runelite.api.widgets.WidgetID;
@@ -101,6 +101,7 @@ class InventoryTagsOverlay extends WidgetItemOverlay
 			graphics.setColor(color);
 			graphics.drawLine((int) bounds.getX(), heightOffSet, (int) bounds.getX() + (int) bounds.getWidth(), heightOffSet);
 		}
+		dotRender(graphics, widgetItem.getCanvasBounds());
 	}
 
 	private Tag getTag(int itemId)
@@ -136,5 +137,31 @@ class InventoryTagsOverlay extends WidgetItemOverlay
 	{
 		fillCache.invalidateAll();
 		tagCache.invalidateAll();
+	}
+	private void dotRender(Graphics2D graphics, Shape s){
+		if (s == null) return;
+
+		Rectangle2D r = s.getBounds();
+		double x, y;
+		do {
+			x = r.getBounds2D().getX() + boxMuller(r.getWidth()/2,r.getWidth()/config.deviation());
+			if (x <= 1)
+				x++;
+			y = r.getBounds2D().getY() + boxMuller(r.getHeight()/2,r.getHeight()/config.deviation());
+			if (y <= 1)
+				y++;
+		} while(!s.contains(x,y));
+		Shape dotRender = new Ellipse2D.Double(x,y, config.dotSize(), config.dotSize());
+		if(r.contains(dotRender.getBounds2D())){
+			graphics.setColor(config.getDotColor());
+			graphics.fill(dotRender);
+		}
+	}
+
+	public double boxMuller(double mean, double variance) {
+		double U = Math.random();
+		double V = (Math.random() * 5.2831853071795862);
+		U = Math.sqrt(-2*Math.log(U))*variance;
+		return mean + U*Math.cos(V);
 	}
 }

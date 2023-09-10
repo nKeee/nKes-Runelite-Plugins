@@ -22,13 +22,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.inventorytags;
+package nKesInventorytags;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.ConfigSection;
-import net.runelite.client.config.Range;
+import net.runelite.client.config.*;
+
+import java.awt.*;
 
 @ConfigGroup(InventoryTagsConfig.GROUP)
 public interface InventoryTagsConfig extends Config
@@ -91,5 +89,49 @@ public interface InventoryTagsConfig extends Config
 	default int fillOpacity()
 	{
 		return 50;
+	}
+
+	@ConfigSection(
+			name = "AHK Dot options",
+			description = "Dot customization",
+			position = 3
+	) String dot = "dot";
+	@Alpha
+	@ConfigItem(
+			keyName = "dot",
+			name = "Dot color",
+			description = "Color of the AHK dot",
+			position = 1,
+			section = dot
+	) default Color getDotColor() { return new Color(255, 0, 0, 255); }
+	@ConfigItem(
+			keyName = "dotsize",
+			name = "Dot Size",
+			description = "Make the dot bigger or smaller if you're experiencing problems with color detection",
+			position = 2,
+			section = dot
+	)
+	@Range(
+			min = 0,
+			max = 10
+	)
+	default int dotSize()
+	{
+		return 2;
+	}
+	@ConfigItem(
+			keyName = "deviation",
+			name = "Deviation",
+			description = "Change the dispersion of dots",
+			position = 3,
+			section = dot
+	)
+	@Range(
+			min = 1,
+			max = 10
+	)
+	default int deviation()
+	{
+		return 2;
 	}
 }

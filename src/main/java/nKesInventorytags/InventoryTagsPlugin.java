@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.inventorytags;
+package nKesInventorytags;
 
 import com.google.gson.Gson;
 import com.google.inject.Provides;
@@ -55,9 +55,9 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 
 @PluginDescriptor(
-	name = "Inventory Tags",
-	description = "Add the ability to tag items in your inventory",
-	tags = {"highlight", "items", "overlay", "tagging"},
+	name = "nKe's Inventory Tags",
+	description = "Add the ability to tag items in your inventory, now with AHK support",
+	tags = {"highlight", "items", "overlay", "tagging", "nKe", "ahk"},
 	enabledByDefault = false
 )
 @Slf4j

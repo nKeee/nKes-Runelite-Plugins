@@ -1,4 +1,11 @@
 <h2>Changelog</h2>
+<details>
+<summary>
+9.9
+</summary>
+
+- Added: Inventory Tags plugin
+</details>
 
 <details>
 <summary>
