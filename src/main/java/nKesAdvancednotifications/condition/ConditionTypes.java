@@ -1,5 +1,10 @@
 package nKesAdvancednotifications.condition;
 
+import nKesAdvancednotifications.notification.EmptyNotification;
+import nKesAdvancednotifications.notification.ItemNotification;
+import nKesAdvancednotifications.notification.NotificationGroup;
+import nKesAdvancednotifications.notification.NotificationType;
+
 import java.util.HashMap;
 import java.util.Map;
 

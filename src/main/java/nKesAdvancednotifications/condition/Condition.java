@@ -1,6 +1,7 @@
 package nKesAdvancednotifications.condition;
 
 import nKesAdvancednotifications.AdvancedNotificationsPlugin;
+import nKesAdvancednotifications.notification.Notification;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

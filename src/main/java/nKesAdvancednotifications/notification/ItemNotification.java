@@ -40,7 +40,6 @@ public class ItemNotification extends Notification
 		else{
 			displayBoxTimer();
 		}
-
 	}
 
 	@Override

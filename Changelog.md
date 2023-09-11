@@ -1,4 +1,13 @@
 <h2>Changelog</h2>
+
+<details>
+<summary>
+11.9
+</summary>
+
+- Fixed a weird issue when running compiled .jar in virtual machine (win10)
+</details>
+
 <details>
 <summary>
 9.9

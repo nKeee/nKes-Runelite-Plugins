@@ -7,11 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Duration;
-import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 
 @NoArgsConstructor
 public abstract class Notification
@@ -32,8 +30,6 @@ public abstract class Notification
 	@Setter
 	private Condition condition = null;
 
-	private Duration dur = Duration.ofMillis(500);
-	private Instant inst = Instant.now();
 	private int i = 0;
 
 	@Getter
@@ -57,9 +53,8 @@ public abstract class Notification
 
 	public void tryNotify(Object event)
 	{
-		if (!enabled || (condition != null && !condition.isFulfilled())) {
-			return;
-		}
+		if (!enabled || (condition != null && !condition.isFulfilled())) return;
+
 		notify(event);
 	}
 
@@ -69,22 +64,11 @@ public abstract class Notification
 	{
 		plugin.getNotifier().notify(message);
 	}
-
-
 	void enableBox(){
 		plugin.displayBox = true;
-		inst = Instant.now();
-
 		i = 2;
 	}
-	//only called from empty/itemnotifications, timer doesnt work atm because its not called every tick
 	void displayBoxTimer(){
-		/*
-		if (Instant.now().compareTo(inst.plus(dur)) >= 0){
-			plugin.displayBox = false
-		}
-		*/
-
 		if (i >= 1){
 			if (i == 1){
 				plugin.displayBox = false;
@@ -92,6 +76,5 @@ public abstract class Notification
 			i--;
 		}
 	}
-
 	public abstract Notification clone();
 }

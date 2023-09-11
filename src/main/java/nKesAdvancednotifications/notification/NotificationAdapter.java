@@ -1,8 +1,10 @@
 package nKesAdvancednotifications.notification;
 
 import nKesAdvancednotifications.AdvancedNotificationsPlugin;
+import nKesAdvancednotifications.condition.CheckerAdapter;
 import nKesAdvancednotifications.condition.Condition;
 import nKesAdvancednotifications.condition.ConditionAdapter;
+import nKesAdvancednotifications.condition.InventoryChecker;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;

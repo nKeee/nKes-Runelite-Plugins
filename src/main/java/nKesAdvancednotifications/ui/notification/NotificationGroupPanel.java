@@ -214,7 +214,7 @@ public class NotificationGroupPanel extends NotificationPanel<NotificationGroup>
 			notificationView.add(new DropSpace<Notification>(system, notification, index++));
 			for (final Notification notif : notification.getDraggableItems())
 			{
-				NotificationPanel<?> panel = buildPanel(notif, system, notification, conditionSystem);
+				NotificationPanel<?> panel = NotificationPanel.buildPanel(notif, system, notification, conditionSystem);
 				if (panel != null)
 				{
 					notificationView.add(panel);

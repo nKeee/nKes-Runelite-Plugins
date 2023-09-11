@@ -1,6 +1,7 @@
 package nKesAdvancednotifications.condition;
 
 import nKesAdvancednotifications.AdvancedNotificationsPlugin;
+import nKesAdvancednotifications.notification.Notification;
 import lombok.Getter;
 
 public class ConditionType<T extends Condition>

@@ -36,7 +36,6 @@ public class EmptyNotification extends Notification
 		else{
 			displayBoxTimer();
 		}
-
 	}
 
 	@Override

@@ -16,8 +16,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import joptsimple.internal.Strings;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
@@ -32,13 +32,13 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
-import net.runelite.client.util.ImageUtil;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.util.ImageUtil;
 
 @PluginDescriptor(
 	name = "nKe's Advanced Notifications",
-	tags = {"notifications", "inventory", "item", "idle", "nKe", "ahk"},
-	description = "An advanced notification system, now with AHK compatibility!"
+	tags = {"notifications", "inventory", "item", "idle", "nke", "ahk"},
+	description = "An advanced notification system, now with AHK support!"
 )
 public class AdvancedNotificationsPlugin extends Plugin implements DraggableContainer<Notification>
 {
@@ -68,18 +68,17 @@ public class AdvancedNotificationsPlugin extends Plugin implements DraggableCont
 	@Inject
 	private ConfigManager configManager;
 
+	private AdvancedNotificationsPluginPanel pluginPanel;
+	private NavigationButton navigationButton;
+	private Item[] previousItems;
+
 	@Inject
 	private nKesAdvancedNotificationsOverlay overlay;
 	@Inject
 	private OverlayManager overlays;
-
-	private AdvancedNotificationsPluginPanel pluginPanel;
-	private NavigationButton navigationButton;
-	private Item[] previousItems;
-	private List<Notification> notifications;
-	@Getter
-	@Setter
 	public boolean displayBox;
+
+	private List<Notification> notifications;
 
 	static {
 		NotificationTypes.registerAll();
@@ -122,10 +121,10 @@ public class AdvancedNotificationsPlugin extends Plugin implements DraggableCont
 	{
 		clientToolbar.removeNavigation(navigationButton);
 
-		overlays.remove(overlay);
 		notifications = null;
 		pluginPanel = null;
 		navigationButton = null;
+		overlays.remove(overlay);
 	}
 
 	@Subscribe

@@ -4,7 +4,11 @@ import nKesAdvancednotifications.DraggableContainer;
 import nKesAdvancednotifications.condition.Condition;
 import nKesAdvancednotifications.condition.InventoryChecker;
 import nKesAdvancednotifications.condition.ItemCondition;
+import nKesAdvancednotifications.notification.InventoryComparator;
+import nKesAdvancednotifications.notification.ItemNotification;
+import nKesAdvancednotifications.notification.Notification;
 import nKesAdvancednotifications.ui.DropSpaceSystem;
+import nKesAdvancednotifications.ui.notification.NotificationPanel;
 import net.runelite.client.ui.ColorScheme;
 
 import javax.swing.*;

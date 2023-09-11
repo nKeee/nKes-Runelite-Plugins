@@ -1,5 +1,6 @@
 package nKesAdvancednotifications.ui;
 
+import nKesAdvancednotifications.*;
 import nKesAdvancednotifications.condition.Condition;
 import nKesAdvancednotifications.notification.EmptyNotification;
 import nKesAdvancednotifications.notification.ItemNotification;
@@ -7,7 +8,6 @@ import nKesAdvancednotifications.notification.Notification;
 import nKesAdvancednotifications.notification.NotificationGroup;
 import nKesAdvancednotifications.ui.notification.NotificationGroupPanel;
 import nKesAdvancednotifications.ui.notification.NotificationPanel;
-import nKesAdvancednotifications.*;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.ui.PluginPanel;

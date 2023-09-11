@@ -1,6 +1,8 @@
 package nKesAdvancednotifications.condition;
 
 import nKesAdvancednotifications.AdvancedNotificationsPlugin;
+import nKesAdvancednotifications.notification.EmptyNotification;
+import nKesAdvancednotifications.notification.InventoryComparator;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.InventoryID;

@@ -1,5 +1,7 @@
 package nKesAdvancednotifications.condition;
 
+import nKesAdvancednotifications.notification.InventoryComparator;
+
 public interface InventoryChecker
 {
 	public static class Pointer

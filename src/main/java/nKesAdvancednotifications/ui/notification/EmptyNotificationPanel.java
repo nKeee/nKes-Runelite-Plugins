@@ -1,13 +1,13 @@
 package nKesAdvancednotifications.ui.notification;
 
 import nKesAdvancednotifications.DraggableContainer;
-import nKesAdvancednotifications.ui.condition.ConditionPanel;
 import nKesAdvancednotifications.condition.Condition;
 import nKesAdvancednotifications.notification.EmptyNotification;
 import nKesAdvancednotifications.notification.InventoryComparator;
 import nKesAdvancednotifications.notification.Notification;
 
 import nKesAdvancednotifications.ui.DropSpaceSystem;
+import nKesAdvancednotifications.ui.condition.ConditionPanel;
 import net.runelite.client.ui.ColorScheme;
 
 import javax.swing.*;
