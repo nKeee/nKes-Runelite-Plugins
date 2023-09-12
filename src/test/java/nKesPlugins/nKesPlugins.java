@@ -1,6 +1,8 @@
 package nKesPlugins;
 
-import nKesAdvancednotifications.AdvancedNotificationsPlugin;
+import nKesFishing.nKesFishingPlugin;
+import nKesFishing.nKesFishingPlugin;
+import nKesInventorynotifier.InventoryNotifierPlugin;
 import nKesInventorytags.InventoryTagsPlugin;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
@@ -17,8 +19,8 @@ public class nKesPlugins
 		//ExternalPluginManager.loadBuiltin(nKesScreenMarkerPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesIdleNotifierPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesGroundMarkerPlugin.class);
-		ExternalPluginManager.loadBuiltin(AdvancedNotificationsPlugin.class);
 		//ExternalPluginManager.loadBuiltin(InventoryTagsPlugin.class);
+		ExternalPluginManager.loadBuiltin(nKesFishingPlugin.class);
 
 		RuneLite.main(args);
 	}

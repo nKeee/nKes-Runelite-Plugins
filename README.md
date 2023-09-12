@@ -40,11 +40,11 @@
 ## Groundmarkers
 - Works with multiple marked tiles at the same time
 
-## Advanced Notifications (WIP)
-- Displays a box when conditions are met
-
 ## Inventory Tags
 -Fully working, supports any amount of items, etc.
+
+## Inventory Notifier
+-Displays a pink (FF00EE) box when your inventory is full
 
 ## TBD
 - Learn how to code
@@ -57,5 +57,4 @@
 
   - [Runelite devs](https://github.com/runelite/runelite) for creating Runelite & the base plugins
   - [TicTac7x](https://github.com/TicTac7x/runelite-plugins/tree/plugin-rooftops) for the 'Rooftop Agility Improved' plugin
-  - [Zakru](https://github.com/Zakru/advanced-notifications) for the 'Advanced notifications' plugin
 </details>
