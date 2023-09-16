@@ -46,6 +46,9 @@
 ## Inventory Notifier
 -Displays a pink (FF00EE) box when your inventory is full
 
+## Fishing Plugin
+-Works with all fish, all customization options working.
+
 ## TBD
 - Learn how to code
 - More plugins

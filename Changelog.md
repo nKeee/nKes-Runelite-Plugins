@@ -2,6 +2,14 @@
 
 <details>
 <summary>
+16.9
+</summary>
+
+- Added: Fishing Plugin
+</details>
+
+<details>
+<summary>
 11.9
 </summary>
 
