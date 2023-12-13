@@ -41,13 +41,17 @@
 - Works with multiple marked tiles at the same time
 
 ## Inventory Tags
--Fully working, supports any amount of items, etc.
+- Fully working, supports any amount of items, etc.
 
 ## Inventory Notifier
--Displays a pink (FF00EE) box when your inventory is full
+- Displays a pink (FF00EE) box when your inventory is full
 
 ## Fishing Plugin
--Works with all fish, all customization options working.
+- Works with all fish, all customization options working.
+
+## Blackjacking
+- Swaps leftclick entry dynamically, allowing for one click blackjacking.
+- Optional antiban to make you occasionally miss a pickpocket.
 
 ## TBD
 - Learn how to code
@@ -59,5 +63,5 @@
 <summary>Credits</summary>
 
   - [Runelite devs](https://github.com/runelite/runelite) for creating Runelite & the base plugins
-  - [TicTac7x](https://github.com/TicTac7x/runelite-plugins/tree/plugin-rooftops) for the 'Rooftop Agility Improved' plugin
+  - [TicTac7x](https://github.com/TicTac7x/runelite-plugins/tree/plugin-rooftops) for the original 'Rooftop Agility Improved' plugin
 </details>

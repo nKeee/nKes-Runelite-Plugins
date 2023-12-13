@@ -1,7 +1,7 @@
 package nKesPlugins;
 
 import nKesFishing.nKesFishingPlugin;
-import nKesFishing.nKesFishingPlugin;
+import nKesBlackjack.nKesBlackjackPlugin;
 import nKesInventorynotifier.InventoryNotifierPlugin;
 import nKesInventorytags.InventoryTagsPlugin;
 import net.runelite.client.RuneLite;
@@ -20,7 +20,8 @@ public class nKesPlugins
 		//ExternalPluginManager.loadBuiltin(nKesIdleNotifierPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesGroundMarkerPlugin.class);
 		//ExternalPluginManager.loadBuiltin(InventoryTagsPlugin.class);
-		ExternalPluginManager.loadBuiltin(nKesFishingPlugin.class);
+		//ExternalPluginManager.loadBuiltin(nKesFishingPlugin.class);
+		ExternalPluginManager.loadBuiltin(nKesBlackjackPlugin.class);
 
 		RuneLite.main(args);
 	}
