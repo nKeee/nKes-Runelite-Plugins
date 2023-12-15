@@ -42,13 +42,13 @@ import net.runelite.client.util.ImageUtil;
 class InventoryTagsOverlay extends WidgetItemOverlay
 {
 	private final ItemManager itemManager;
-	private final InventoryTagsPlugin plugin;
-	private final InventoryTagsConfig config;
+	private final nKesInventoryTagsPlugin plugin;
+	private final nKesInventoryTagsConfig config;
 	private final Cache<Long, Image> fillCache;
 	private final Cache<Integer, Tag> tagCache;
 
 	@Inject
-	private InventoryTagsOverlay(ItemManager itemManager, InventoryTagsPlugin plugin, InventoryTagsConfig config)
+	private InventoryTagsOverlay(ItemManager itemManager, nKesInventoryTagsPlugin plugin, nKesInventoryTagsConfig config)
 	{
 		this.itemManager = itemManager;
 		this.plugin = plugin;

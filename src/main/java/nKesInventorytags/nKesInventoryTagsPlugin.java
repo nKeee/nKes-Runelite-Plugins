@@ -61,7 +61,7 @@ import net.runelite.client.util.ColorUtil;
 	enabledByDefault = false
 )
 @Slf4j
-public class InventoryTagsPlugin extends Plugin
+public class nKesInventoryTagsPlugin extends Plugin
 {
 	private static final String ITEM_KEY_PREFIX = "item_";
 	private static final String TAG_KEY_PREFIX = "tag_";
@@ -85,9 +85,9 @@ public class InventoryTagsPlugin extends Plugin
 	private ColorPickerManager colorPickerManager;
 
 	@Provides
-	InventoryTagsConfig provideConfig(ConfigManager configManager)
+	nKesInventoryTagsConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(InventoryTagsConfig.class);
+		return configManager.getConfig(nKesInventoryTagsConfig.class);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class InventoryTagsPlugin extends Plugin
 
 	Tag getTag(int itemId)
 	{
-		String tag = configManager.getConfiguration(InventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId);
+		String tag = configManager.getConfiguration(nKesInventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId);
 		if (tag == null || tag.isEmpty())
 		{
 			return null;
@@ -117,24 +117,24 @@ public class InventoryTagsPlugin extends Plugin
 	void setTag(int itemId, Tag tag)
 	{
 		String json = gson.toJson(tag);
-		configManager.setConfiguration(InventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId, json);
+		configManager.setConfiguration(nKesInventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId, json);
 	}
 
 	void unsetTag(int itemId)
 	{
-		configManager.unsetConfiguration(InventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId);
+		configManager.unsetConfiguration(nKesInventoryTagsConfig.GROUP, TAG_KEY_PREFIX + itemId);
 	}
 
 	private void convertConfig()
 	{
-		String migrated = configManager.getConfiguration(InventoryTagsConfig.GROUP, "migrated");
+		String migrated = configManager.getConfiguration(nKesInventoryTagsConfig.GROUP, "migrated");
 		if (!"1".equals(migrated))
 		{
 			return;
 		}
 
 		int removed = 0;
-		List<String> keys = configManager.getConfigurationKeys(InventoryTagsConfig.GROUP + "." + ITEM_KEY_PREFIX);
+		List<String> keys = configManager.getConfigurationKeys(nKesInventoryTagsConfig.GROUP + "." + ITEM_KEY_PREFIX);
 		for (String key : keys)
 		{
 			String[] str = key.split("\\.", 2);
@@ -146,13 +146,13 @@ public class InventoryTagsPlugin extends Plugin
 		}
 
 		log.debug("Removed {} old tags", removed);
-		configManager.setConfiguration(InventoryTagsConfig.GROUP, "migrated", "2");
+		configManager.setConfiguration(nKesInventoryTagsConfig.GROUP, "migrated", "2");
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged configChanged)
 	{
-		if (configChanged.getGroup().equals(InventoryTagsConfig.GROUP))
+		if (configChanged.getGroup().equals(nKesInventoryTagsConfig.GROUP))
 		{
 			overlay.invalidateCache();
 		}

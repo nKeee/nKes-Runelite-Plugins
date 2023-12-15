@@ -2,6 +2,22 @@
 
 <details>
 <summary>
+15.9
+</summary>
+
+- Minox bugfix
+</details>
+
+<details>
+<summary>
+13.12
+</summary>
+
+- Added: Blackjacking Plugin
+</details>
+
+<details>
+<summary>
 16.9
 </summary>
 

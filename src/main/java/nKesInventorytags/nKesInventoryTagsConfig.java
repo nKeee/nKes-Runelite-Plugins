@@ -28,8 +28,8 @@ import net.runelite.client.config.*;
 
 import java.awt.*;
 
-@ConfigGroup(InventoryTagsConfig.GROUP)
-public interface InventoryTagsConfig extends Config
+@ConfigGroup(nKesInventoryTagsConfig.GROUP)
+public interface nKesInventoryTagsConfig extends Config
 {
 	String GROUP = "nKesInventorytags";
 

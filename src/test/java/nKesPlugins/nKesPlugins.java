@@ -3,7 +3,7 @@ package nKesPlugins;
 import nKesFishing.nKesFishingPlugin;
 import nKesBlackjack.nKesBlackjackPlugin;
 import nKesInventorynotifier.InventoryNotifierPlugin;
-import nKesInventorytags.InventoryTagsPlugin;
+import nKesInventorytags.nKesInventoryTagsPlugin;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
