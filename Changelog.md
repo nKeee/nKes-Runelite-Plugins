@@ -2,7 +2,15 @@
 
 <details>
 <summary>
-15.9
+23.6.2024
+</summary>
+
+- Fixed felling axe animations not triggering idlenotifier
+</details>
+
+<details>
+<summary>
+15.9.2023
 </summary>
 
 - Minox bugfix
@@ -10,7 +18,7 @@
 
 <details>
 <summary>
-13.12
+13.12.2023
 </summary>
 
 - Added: Blackjacking Plugin
@@ -18,7 +26,7 @@
 
 <details>
 <summary>
-16.9
+16.9.2023
 </summary>
 
 - Added: Fishing Plugin
@@ -26,7 +34,7 @@
 
 <details>
 <summary>
-11.9
+11.9.2023
 </summary>
 
 - Fixed a weird issue when running compiled .jar in virtual machine (win10)
@@ -34,7 +42,7 @@
 
 <details>
 <summary>
-9.9
+9.9.2023
 </summary>
 
 - Added: Inventory Tags plugin
@@ -42,7 +50,7 @@
 
 <details>
 <summary>
-8.9
+8.9.2023
 </summary>
 
 - Added: Advanced Notifications plugin (WIP)
@@ -50,7 +58,7 @@
 
 <details>
 <summary>
-5.8
+5.8.2023
 </summary>
 
 - Added toggle for marks of grace rendering
@@ -58,7 +66,7 @@
 
 <details>
 <summary>
-23.7
+23.7.2023
 </summary>
 
 - Added missing mark of grace location to Rellekka rooftops
@@ -66,7 +74,7 @@
 
 <details>
 <summary>
-19.7
+19.7.2023
 </summary>
 
 Added customization options for:
@@ -76,7 +84,7 @@ Added customization options for:
 
 <details>
 <summary>
-17.7
+17.7.2023
 </summary>
 
 - Tried to fix a pixel overlap when dot x/y = 0

@@ -21,7 +21,7 @@ public class nKesPlugins
 		//ExternalPluginManager.loadBuiltin(nKesGroundMarkerPlugin.class);
 		//ExternalPluginManager.loadBuiltin(InventoryTagsPlugin.class);
 		//ExternalPluginManager.loadBuiltin(nKesFishingPlugin.class);
-		ExternalPluginManager.loadBuiltin(nKesBlackjackPlugin.class);
+		//ExternalPluginManager.loadBuiltin(nKesBlackjackPlugin.class);
 
 		RuneLite.main(args);
 	}
