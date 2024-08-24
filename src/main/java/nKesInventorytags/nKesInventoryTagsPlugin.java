@@ -39,6 +39,7 @@ import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.KeyCode;
 import net.runelite.api.MenuAction;
+import net.runelite.api.Menu;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.events.MenuOpened;
 import net.runelite.api.widgets.Widget;
@@ -55,10 +56,10 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 
 @PluginDescriptor(
-	name = "nKe's Inventory Tags",
-	description = "Add the ability to tag items in your inventory, now with AHK support",
-	tags = {"highlight", "items", "overlay", "tagging", "nKe", "ahk"},
-	enabledByDefault = false
+		name = "nKe's Inventory Tags",
+		description = "Add the ability to tag items in your inventory, now with AHK support",
+		tags = {"highlight", "items", "overlay", "tagging", "nKe", "ahk"},
+		enabledByDefault = false
 )
 @Slf4j
 public class nKesInventoryTagsPlugin extends Plugin
@@ -173,61 +174,59 @@ public class nKesInventoryTagsPlugin extends Plugin
 			final Widget w = entry.getWidget();
 
 			if (w != null && WidgetInfo.TO_GROUP(w.getId()) == WidgetID.INVENTORY_GROUP_ID
-				&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
+					&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
 			{
 				final int itemId = w.getItemId();
 				final Tag tag = getTag(itemId);
 
 				final MenuEntry parent = client.createMenuEntry(idx)
-					.setOption("Inventory tag")
-					.setTarget(entry.getTarget())
-					.setType(MenuAction.RUNELITE_SUBMENU);
+						.setOption("Inventory tag")
+						.setTarget(entry.getTarget())
+						.setType(MenuAction.RUNELITE);
+				final Menu submenu = parent.createSubMenu();
 
 				for (Color color : invColors())
 				{
 					if (tag == null || !tag.color.equals(color))
 					{
-						client.createMenuEntry(idx)
-							.setOption(ColorUtil.prependColorTag("Color", color))
-							.setType(MenuAction.RUNELITE)
-							.setParent(parent)
-							.onClick(e ->
-							{
-								Tag t = new Tag();
-								t.color = color;
-								setTag(itemId, t);
-							});
+						submenu.createMenuEntry(0)
+								.setOption(ColorUtil.prependColorTag("Color", color))
+								.setType(MenuAction.RUNELITE)
+								.onClick(e ->
+								{
+									Tag t = new Tag();
+									t.color = color;
+									setTag(itemId, t);
+								});
 					}
 				}
 
-				client.createMenuEntry(idx)
-					.setOption("Pick")
-					.setType(MenuAction.RUNELITE)
-					.setParent(parent)
-					.onClick(e ->
-					{
-						Color color = tag == null ? Color.WHITE : tag.color;
-						SwingUtilities.invokeLater(() ->
+				submenu.createMenuEntry(0)
+						.setOption("Pick")
+						.setType(MenuAction.RUNELITE)
+						.onClick(e ->
 						{
-							RuneliteColorPicker colorPicker = colorPickerManager.create(SwingUtilities.windowForComponent((Applet) client),
-								color, "Inventory Tag", true);
-							colorPicker.setOnClose(c ->
+							Color color = tag == null ? Color.WHITE : tag.color;
+							SwingUtilities.invokeLater(() ->
 							{
-								Tag t = new Tag();
-								t.color = c;
-								setTag(itemId, t);
+								RuneliteColorPicker colorPicker = colorPickerManager.create(SwingUtilities.windowForComponent((Applet) client),
+										color, "Inventory Tag", true);
+								colorPicker.setOnClose(c ->
+								{
+									Tag t = new Tag();
+									t.color = c;
+									setTag(itemId, t);
+								});
+								colorPicker.setVisible(true);
 							});
-							colorPicker.setVisible(true);
 						});
-					});
 
 				if (tag != null)
 				{
-					client.createMenuEntry(idx)
-						.setOption("Reset")
-						.setType(MenuAction.RUNELITE)
-						.setParent(parent)
-						.onClick(e -> unsetTag(itemId));
+					submenu.createMenuEntry(0)
+							.setOption("Reset")
+							.setType(MenuAction.RUNELITE)
+							.onClick(e -> unsetTag(itemId));
 				}
 			}
 		}

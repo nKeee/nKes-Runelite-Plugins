@@ -2,6 +2,14 @@
 
 <details>
 <summary>
+24.8.2024
+</summary>
+
+- Refactored InventTags & NPCIndicators plugins
+</details>
+
+<details>
+<summary>
 23.6.2024
 </summary>
 

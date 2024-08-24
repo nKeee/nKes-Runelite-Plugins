@@ -49,6 +49,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
 import net.runelite.client.util.WildcardMatcher;
+import net.runelite.api.Menu;
 
 import javax.inject.Inject;
 import javax.swing.*;
@@ -60,9 +61,9 @@ import java.util.*;
 import java.util.function.Function;
 
 @PluginDescriptor(
-	name = "nKe's NPC Indicators",
-	description = "Highlight NPCs on-screen and/or on the minimap, now with AHK dot",
-	tags = {"highlight", "minimap", "npcs", "overlay", "respawn", "tags", "nke", "ahk"}
+		name = "nKe's NPC Indicators",
+		description = "Highlight NPCs on-screen and/or on the minimap, now with AHK dot",
+		tags = {"highlight", "minimap", "npcs", "overlay", "respawn", "tags", "nke", "ahk"}
 )
 @Slf4j
 public class nKesNpcIndicatorsPlugin extends Plugin
@@ -214,7 +215,7 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOGIN_SCREEN ||
-			event.getGameState() == GameState.HOPPING)
+				event.getGameState() == GameState.HOPPING)
 		{
 			highlightedNpcs.clear();
 			deadNpcsToDisplay.clear();
@@ -259,26 +260,26 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 			final boolean nameMatch = highlights.stream().anyMatch(npcName::equalsIgnoreCase);
 			final boolean idMatch = npcTags.contains(npc.getIndex());
 			final boolean wildcardMatch = highlights.stream()
-				.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
-				.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
+					.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
+					.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
 			int idx = -1;
 
 			client.createMenuEntry(idx--)
-				.setOption(idMatch ? UNTAG : TAG)
-				.setTarget(event.getTarget())
-				.setIdentifier(event.getIdentifier())
-				.setType(MenuAction.RUNELITE)
-				.onClick(this::tag);
+					.setOption(idMatch ? UNTAG : TAG)
+					.setTarget(event.getTarget())
+					.setIdentifier(event.getIdentifier())
+					.setType(MenuAction.RUNELITE)
+					.onClick(this::tag);
 
 			// Only add Untag-All option to npcs not highlighted by a wildcard entry, because untag-all will not remove wildcards
 			if (!wildcardMatch)
 			{
 				client.createMenuEntry(idx--)
-					.setOption(nameMatch ? UNTAG_ALL : TAG_ALL)
-					.setTarget(event.getTarget())
-					.setIdentifier(event.getIdentifier())
-					.setType(MenuAction.RUNELITE)
-					.onClick(this::tag);
+						.setOption(nameMatch ? UNTAG_ALL : TAG_ALL)
+						.setTarget(event.getTarget())
+						.setIdentifier(event.getIdentifier())
+						.setType(MenuAction.RUNELITE)
+						.onClick(this::tag);
 			}
 
 			// Add tag options only if the npc is currently tagged
@@ -322,50 +323,48 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 		}
 
 		MenuEntry parent = client.createMenuEntry(idx--)
-			.setOption("Tag color")
-			.setTarget(target)
-			.setType(MenuAction.RUNELITE_SUBMENU);
+				.setOption("Tag color")
+				.setTarget(target)
+				.setType(MenuAction.RUNELITE);
+		Menu submenu = parent.createSubMenu();
 
 		for (final Color c : colors)
 		{
-			client.createMenuEntry(idx--)
-				.setOption(ColorUtil.prependColorTag("Set color", c))
-				.setType(MenuAction.RUNELITE)
-				.setParent(parent)
-				.onClick(e ->
-				{
-					setNpcHighlightColor(npc.getId(), c);
-					clientThread.invokeLater(this::rebuild);
-				});
+			submenu.createMenuEntry(0)
+					.setOption(ColorUtil.prependColorTag("Set color", c))
+					.setType(MenuAction.RUNELITE)
+					.onClick(e ->
+					{
+						setNpcHighlightColor(npc.getId(), c);
+						clientThread.invokeLater(this::rebuild);
+					});
 		}
 
-		client.createMenuEntry(idx--)
-			.setOption("Pick color")
-			.setType(MenuAction.RUNELITE)
-			.setParent(parent)
-			.onClick(e -> SwingUtilities.invokeLater(() ->
-			{
-				RuneliteColorPicker colorPicker = colorPickerManager.create(SwingUtilities.windowForComponent((Applet) client),
-					Color.WHITE, "Tag Color", false);
-				colorPicker.setOnClose(c ->
+		submenu.createMenuEntry(0)
+				.setOption("Pick color")
+				.setType(MenuAction.RUNELITE)
+				.onClick(e -> SwingUtilities.invokeLater(() ->
 				{
-					setNpcHighlightColor(npc.getId(), c);
-					clientThread.invokeLater(this::rebuild);
-				});
-				colorPicker.setVisible(true);
-			}));
+					RuneliteColorPicker colorPicker = colorPickerManager.create(SwingUtilities.windowForComponent((Applet) client),
+							Color.WHITE, "Tag Color", false);
+					colorPicker.setOnClose(c ->
+					{
+						setNpcHighlightColor(npc.getId(), c);
+						clientThread.invokeLater(this::rebuild);
+					});
+					colorPicker.setVisible(true);
+				}));
 
 		if (getNpcHighlightColor(npc.getId()) != null)
 		{
-			client.createMenuEntry(idx--)
-				.setOption("Reset")
-				.setType(MenuAction.RUNELITE)
-				.setParent(parent)
-				.onClick(e ->
-				{
-					unsetNpcHighlightColor(npc.getId());
-					clientThread.invokeLater(this::rebuild);
-				});
+			submenu.createMenuEntry(0)
+					.setOption("Reset")
+					.setType(MenuAction.RUNELITE)
+					.onClick(e ->
+					{
+						unsetNpcHighlightColor(npc.getId());
+						clientThread.invokeLater(this::rebuild);
+					});
 		}
 
 		return idx;
@@ -374,9 +373,10 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 	private int createTagStyleMenu(int idx, String target, NPC npc)
 	{
 		MenuEntry parent = client.createMenuEntry(idx--)
-			.setOption("Tag style")
-			.setTarget(target)
-			.setType(MenuAction.RUNELITE_SUBMENU);
+				.setOption("Tag style")
+				.setTarget(target)
+				.setType(MenuAction.RUNELITE);
+		Menu submenu = parent.createSubMenu();
 
 		String[] names = {"Hull", "Tile", "True tile", "South-west tile", "South-west true tile", "Outline"};
 		String[] styles = {STYLE_HULL, STYLE_TILE, STYLE_TRUE_TILE, STYLE_SW_TILE, STYLE_SW_TRUE_TILE, STYLE_OUTLINE};
@@ -384,28 +384,26 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 		for (int i = 0; i < names.length; ++i)
 		{
 			final String style = styles[i];
-			client.createMenuEntry(idx--)
-				.setOption(names[i])
-				.setType(MenuAction.RUNELITE)
-				.setParent(parent)
-				.onClick(e ->
-				{
-					setNpcTagStyle(npc.getId(), style);
-					clientThread.invokeLater(this::rebuild);
-				});
+			submenu.createMenuEntry(0)
+					.setOption(names[i])
+					.setType(MenuAction.RUNELITE)
+					.onClick(e ->
+					{
+						setNpcTagStyle(npc.getId(), style);
+						clientThread.invokeLater(this::rebuild);
+					});
 		}
 
 		if (getNpcTagStyle(npc.getId()) != null)
 		{
-			client.createMenuEntry(idx--)
-				.setOption("Reset")
-				.setType(MenuAction.RUNELITE)
-				.setParent(parent)
-				.onClick(e ->
-				{
-					unsetNpcTagStyle(npc.getId());
-					clientThread.invokeLater(this::rebuild);
-				});
+			submenu.createMenuEntry(0)
+					.setOption("Reset")
+					.setType(MenuAction.RUNELITE)
+					.onClick(e ->
+					{
+						unsetNpcTagStyle(npc.getId());
+						clientThread.invokeLater(this::rebuild);
+					});
 		}
 
 		return idx;
@@ -518,7 +516,7 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 		}
 
 		if (npcTags.contains(npc.getIndex())
-			|| highlightMatchesNPCName(npcName))
+				|| highlightMatchesNPCName(npcName))
 		{
 			highlightedNpcs.put(npc, highlightedNpc(npc));
 		}
@@ -621,7 +619,7 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 		highlightedNpcs.clear();
 
 		if (client.getGameState() != GameState.LOGGED_IN &&
-			client.getGameState() != GameState.LOADING)
+				client.getGameState() != GameState.LOADING)
 		{
 			// NPCs are still in the client after logging out,
 			// but we don't want to highlight those.
@@ -714,7 +712,7 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 				if (!teleportGraphicsObjectSpawnedThisTick.isEmpty())
 				{
 					if (teleportGraphicsObjectSpawnedThisTick.contains(npc.getWorldLocation()) ||
-						teleportGraphicsObjectSpawnedThisTick.contains(getWorldLocationBehind(npc)))
+							teleportGraphicsObjectSpawnedThisTick.contains(getWorldLocationBehind(npc)))
 					{
 						// NPC teleported here, so we don't want to update the respawn timer
 						continue;
@@ -747,7 +745,7 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 					final WorldPoint possibleOtherNpcLocation = getWorldLocationBehind(npc);
 
 					mn.getPossibleRespawnLocations().removeIf(x ->
-						!x.equals(npcLocation) && !x.equals(possibleOtherNpcLocation));
+							!x.equals(npcLocation) && !x.equals(possibleOtherNpcLocation));
 
 					if (mn.getPossibleRespawnLocations().isEmpty())
 					{
@@ -790,21 +788,21 @@ public class nKesNpcIndicatorsPlugin extends Plugin
 		}
 
 		return HighlightedNpc.builder()
-			.npc(npc)
-			.highlightColor(MoreObjects.firstNonNull(getNpcHighlightColor(npcId), config.highlightColor()))
-			.fillColor(config.fillColor())
-			.hull(hull)
-			.tile(tile)
-			.trueTile(trueTile)
-			.swTile(swTile)
-			.swTrueTile(swTrueTile)
-			.outline(outline)
-			.name(config.drawNames())
-			.nameOnMinimap(config.drawMinimapNames())
-			.borderWidth((float) config.borderWidth())
-			.outlineFeather(config.outlineFeather())
-			.render(this::render)
-			.build();
+				.npc(npc)
+				.highlightColor(MoreObjects.firstNonNull(getNpcHighlightColor(npcId), config.highlightColor()))
+				.fillColor(config.fillColor())
+				.hull(hull)
+				.tile(tile)
+				.trueTile(trueTile)
+				.swTile(swTile)
+				.swTrueTile(swTrueTile)
+				.outline(outline)
+				.name(config.drawNames())
+				.nameOnMinimap(config.drawMinimapNames())
+				.borderWidth((float) config.borderWidth())
+				.outlineFeather(config.outlineFeather())
+				.render(this::render)
+				.build();
 	}
 
 	private boolean render(NPC n)
